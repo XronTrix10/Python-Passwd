@@ -90,13 +90,14 @@ def file_editor(filePath):
 
         art.header()
         print("File was successfully updated !")
-    
+
         input("\nPress ENTER to Continue...")
         art.header()
         print("OPTIONS: \n")
         return
 
     else:
+
         art.header()
         print(f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n")
         file_editor(filePath)
@@ -116,7 +117,8 @@ def pswd_viewer():
 
     files_path = main_path
 
-    print("\t(1) Social Accounts\n\t(2) Email IDs\n\t(3) Websites\n\t(4) Apps\n\t(5) Others\n\t(6) Back")
+    print(
+        "\t(1) Social Accounts\n\t(2) Email IDs\n\t(3) Websites\n\t(4) Apps\n\t(5) Others\n\t[6] Back")
     choice = int(input("\nYour choice: "))
 
     if choice < 1 or choice > 6:
@@ -128,7 +130,7 @@ def pswd_viewer():
     elif choice == 6:
 
         art.header()
-        print("OPTIONS:\n")
+        # print("OPTIONS:\n")
         return
 
     else:
@@ -138,32 +140,56 @@ def pswd_viewer():
     art.header()
     list = os.listdir(files_path)
 
-    for i in range(len(list)):
-        print(f"\t({i+1}) ", list[i].split('.')[0])
+    # Checking if the folder is empty
+    if len(list) == 0:
 
-    choice_1 = int(input("\nYour Choice: "))
-    filePath = os.path.join(files_path, list[choice_1 - 1])
-
-    art.header()
-
-    file_viewer(filePath)
-
-    choice_2 = input("\nDo you want to edit it ? (Y/n): ").lower()
-
-    if choice_2 == 'y':
-        art.header()
-        file_editor(filePath)
-    else:
+        print("No Files here :^)")
+        input("\nPress ENTER to go back....")
         art.header()
         print("OPTIONS:\n")
-        return
+        pswd_viewer()
+
+    else:
+
+        for i in range(len(list)):
+            print(f"\t({i+1})", list[i].split('.')[0])
+
+        # If the user wants to enter another directory
+        print(f"\t[{len(list) + 1}] Back")
+
+        choice_1 = int(input("\nYour Choice: "))
+
+        # if user wants to go back
+        if choice_1 == len(list) + 1:
+
+            art.header()
+            pswd_viewer()
+
+        else:
+
+            filePath = os.path.join(files_path, list[choice_1 - 1])
+
+            art.header()
+
+            file_viewer(filePath)
+
+            choice_2 = input("\nDo you want to edit it ? (Y/n): ").lower()
+
+            if choice_2 == 'y':
+                art.header()
+                file_editor(filePath)
+            else:
+                art.header()
+                print("OPTIONS:\n")
+                return
 
 
 def pswd_saver():
 
     files_path = main_path
     print("Select Category: ")
-    print("\n\t(1) Social Accounts\n\t(2) Email IDs\n\t(3) Websites\n\t(4) Apps\n\t(5) Others\n\t(6) Back")
+    print(
+        "\n\t(1) Social Accounts\n\t(2) Email IDs\n\t(3) Websites\n\t(4) Apps\n\t(5) Others\n\t[6] Back")
     choice_1 = int(input("\nYour choice: "))
 
     if choice_1 < 1 or choice_1 > 6:
@@ -175,7 +201,7 @@ def pswd_saver():
     elif choice_1 == 6:
 
         art.header()
-        print("OPTIONS:\n")
+        # print("OPTIONS:\n")
         return
 
     else:
@@ -192,14 +218,35 @@ def pswd_saver():
         art.header()
         list = os.listdir(files_path)
 
-        for i in range(len(list)):
-            print(f"\t({i+1}) ", list[i].split('.')[0])
+        # Checking if the folder is empty
+        if len(list) == 0:
 
-        choice_1 = int(input("\nYour Choice: "))
-        path_to_file = os.path.join(files_path, list[choice_1 - 1])
+            print("No Files here :^)")
+            input("\nPress ENTER to go back....")
+            art.header()
+            pswd_saver()
 
-        art.header()
-        file_editor(path_to_file)
+        else:
+
+            for i in range(len(list)):
+                print(f"\t({i+1})", list[i].split('.')[0])
+
+             # If the user wants to enter another directory
+            print(f"\t[{len(list) + 1}] Back")
+
+            choice_1 = int(input("\nYour Choice: "))
+
+            # if user wants to go back
+            if choice_1 == len(list) + 1:
+
+                art.header()
+                pswd_saver()
+
+            else:
+
+                path_to_file = os.path.join(files_path, list[choice_1 - 1])
+                art.header()
+                file_editor(path_to_file)
 
     elif choice == 2:
 
@@ -209,6 +256,7 @@ def pswd_saver():
         path_to_file = os.path.join(files_path, file_name)
         f1 = open(path_to_file, 'w')
         f1.close
+        art.header()
         file_editor(path_to_file)
 
     else:
@@ -220,31 +268,33 @@ def pswd_saver():
 
 def main_fun():
 
-    choice = 0
+    while True:
 
-    print("AVAILABLE OPTIONS:\n")
-    print("\t(1) View saved passwords\n\t(2) Create a new credential\n\t(3) Back")
-    choice = int(input("\nYour choice: "))
+        choice = 0
 
-    if choice == 1:
-
-        art.header()
         print("AVAILABLE OPTIONS:\n")
-        pswd_viewer()
+        print(
+            "\t(1) View saved passwords\n\t(2) Create a new credential\n\t[3] Back")
+        choice = int(input("\nYour choice: "))
 
-    elif choice == 2:
+        if choice == 1:
 
-        art.header()
-        pswd_saver()
+            art.header()
+            print("AVAILABLE OPTIONS:\n")
+            pswd_viewer()
 
-    elif choice == 3:
+        elif choice == 2:
 
-        art.header()
-        print("OPTIONS:\n")
-        return
+            art.header()
+            pswd_saver()
 
-    else:
-        art.header()
-        print("WRONG choice ! Try again !\n")
-        main_fun()
+        elif choice == 3:
 
+            art.header()
+            print("OPTIONS:\n")
+            return
+
+        else:
+            art.header()
+            print("WRONG choice ! Try again !\n")
+            main_fun()

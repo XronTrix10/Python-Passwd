@@ -7,7 +7,7 @@ print(f"What you upto {os.environ.get('USERNAME')} ?\n")
 
 while True:
 
-    print("\t(1) Generate a password\n\t(2) Manage your passwords\n\t(3) Exit")
+    print("\t(1) Generate a password\n\t(2) Manage your passwords\n\t[3] Exit")
 
     choice_1 = int(input("\nEnter your choice: "))
 
