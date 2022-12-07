@@ -1,7 +1,7 @@
 import os
 from modules import art, passwd_gen
 
-main_path = "f:\\Documents\\01_Everything\\password_manager\\data\\"
+main_path = "f:\\Documents\\01_Everything\\Python-Passwd\\data\\"
 
 
 def filePath_selector(choice):
@@ -29,6 +29,66 @@ def filePath_selector(choice):
         files_path = os.path.join(main_path, 'others')
 
     return files_path
+
+
+def paswd_editor():
+
+    files_path = main_path
+
+    print("\t(1) Social Accounts\n\t(2) Email IDs\n\t(3) Websites\n\t(4) Apps\n\t(5) Others\n\t[6] Back")
+    choice = int(input("\nYour choice: "))
+
+    if choice < 1 or choice > 6:
+
+        art.header()
+        print(f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n")
+        pswd_viewer()
+
+    elif choice == 6:
+
+        art.header()
+        # print("OPTIONS:\n")
+        return
+
+    else:
+
+        files_path = filePath_selector(choice)
+
+    art.header()
+    list = os.listdir(files_path)
+
+    # Checking if the folder is empty
+    if len(list) == 0:
+
+        print("No Files here :^)")
+        input("\nPress ENTER to go back....")
+        art.header()
+        print("OPTIONS:\n")
+        paswd_editor()
+
+    else:
+
+        for i in range(len(list)):
+            print(f"\t({i+1})", list[i].split('.')[0])
+
+        # If the user wants to enter another directory
+        print(f"\t[{len(list) + 1}] Back")
+
+        choice_1 = int(input("\nYour Choice: "))
+
+        # if user wants to go back
+        if choice_1 == len(list) + 1:
+
+            art.header()
+            paswd_editor()
+
+        else:
+
+            filePath = os.path.join(files_path, list[choice_1 - 1])
+
+            art.header()
+
+            file_editor(filePath)
 
 
 def file_editor(filePath):
@@ -74,7 +134,7 @@ def file_editor(filePath):
             print(f"({i}) {data[i]}", end="")
 
         print("\n\nNow, Carefully enter the line number (shown on left) that you want to edit" +
-              "\nNOTE: That line should contain either login or password !!")
+              "\n\nNOTE: That line MUST contain either login or password !!")
         line_no = int(input("\nEnter line number: "))
 
         art.header()
@@ -103,14 +163,94 @@ def file_editor(filePath):
         file_editor(filePath)
 
 
+def file_deleter():
+
+    files_path = main_path
+
+    print(
+        "\t(1) Social Accounts\n\t(2) Email IDs\n\t(3) Websites\n\t(4) Apps\n\t(5) Others\n\t[6] Back")
+    choice = int(input("\nYour choice: "))
+
+    if choice < 1 or choice > 6:
+
+        art.header()
+        print(f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n")
+        pswd_viewer()
+
+    elif choice == 6:
+
+        art.header()
+        # print("OPTIONS:\n")
+        return
+
+    else:
+
+        files_path = filePath_selector(choice)
+
+    art.header()
+    list = os.listdir(files_path)
+
+    # Checking if the folder is empty
+    if len(list) == 0:
+
+        print("No Files here :^)")
+        input("\nPress ENTER to go back....")
+        art.header()
+        print("OPTIONS:\n")
+        file_deleter()
+
+    else:
+
+        for i in range(len(list)):
+            print(f"\t({i+1})", list[i].split('.')[0])
+
+        # If the user wants to enter another directory
+        print(f"\t[{len(list) + 1}] Back")
+
+        choice_1 = int(input("\nYour Choice: "))
+
+        # if user wants to go back
+        if choice_1 == len(list) + 1:
+
+            art.header()
+            file_deleter()
+
+        else:
+
+            filePath = os.path.join(files_path, list[choice_1 - 1])
+
+            art.header()
+
+            file_name = os.path.basename(filePath)
+            file_name = os.path.splitext(file_name)[0]
+
+            print(f"Permanantly delete {file_name} ?" +
+                  "\nNOTE: This operation can't be undone !")
+
+            choice_2 = input("\nYour decision: (Y/n): ").lower()
+
+            if choice_2 == 'y':
+
+                art.header()
+                print(f"{file_name} was deleted forever !")
+                os.remove(filePath)
+                input("\nPress ENTER to Continue...")
+                art.header()
+
+            else:
+                art.header()
+                print("OPTIONS:\n")
+                return
+
+
 def file_viewer(filePath):
 
-    print("\n" + "="*20 + "\n")
+    print("\n" + "="*40)
     with open(filePath, 'r') as file:
 
         for lines in file:
             print(lines, end="")
-    print("\n\n" + "="*20)
+    print("\n\n" + "="*40)
 
 
 def pswd_viewer():
@@ -173,14 +313,14 @@ def pswd_viewer():
 
             file_viewer(filePath)
 
-            choice_2 = input("\nDo you want to edit it ? (Y/n): ").lower()
+            choice_2 = input(
+                "\nDo you want to edit the file ? (Y/n): ").lower()
 
             if choice_2 == 'y':
                 art.header()
                 file_editor(filePath)
             else:
                 art.header()
-                print("OPTIONS:\n")
                 return
 
 
@@ -274,7 +414,7 @@ def main_fun():
 
         print("AVAILABLE OPTIONS:\n")
         print(
-            "\t(1) View saved passwords\n\t(2) Create a new credential\n\t[3] Back")
+            "\t(1) View saved passwords\n\t(2) Add a new credential\n\t(3) Edit a File\n\t(4) Delete a File\n\t[5] Back")
         choice = int(input("\nYour choice: "))
 
         if choice == 1:
@@ -289,6 +429,16 @@ def main_fun():
             pswd_saver()
 
         elif choice == 3:
+
+            art.header()
+            paswd_editor()
+
+        elif choice == 4:
+
+            art.header()
+            file_deleter()
+
+        elif choice == 5:
 
             art.header()
             print("OPTIONS:\n")
