@@ -41,7 +41,7 @@ goto check_Permissions
         echo. & echo "Now Installing for you :)"
         
         :: copying all code files
-        xcopy "%~dp0scripts" "C:\Program Files\Python-Passwd\" /s /e
+        xcopy "%~dp0scripts" "C:\Program Files\Python-Passwd\" /s /e >nul 2>&1
         :: Creating directory for saving credentials
         cd %APPDATA%
         mkdir Python-Passwd-Data & cd Python-Passwd-Data
@@ -50,14 +50,14 @@ goto check_Permissions
         attrib +h %APPDATA%\Python-Passwd-Data /s /d
 
         :: appending the location of code files to PATH
-        setx path "%path%;C:\Program Files\Python-Passwd\"
+        setx path "%path%;C:\Program Files\Python-Passwd\" >nul 2>&1
 
         :: installing python cryptography module
-        pip install cryptography
+        pip install cryptography >nul 2>&1
 
         echo. & echo ========================================================
 
-        echo. & echo Success: Installation Complete & echo. & echo Press ENTER to quit....
+        echo. & echo Success: Installation Complete
 
 
     ) else (
