@@ -1,8 +1,8 @@
 import os
 from modules import art, passwd_gen
+from os import path
 
-main_path = "f:\\Documents\\01_Everything\\Python-Passwd\\data\\"
-
+main_path = path.expandvars(r'%APPDATA%\Python-Passwd-Data')
 
 def filePath_selector(choice):
 
@@ -47,7 +47,6 @@ def paswd_editor():
     elif choice == 6:
 
         art.header()
-        # print("OPTIONS:\n")
         return
 
     else:
