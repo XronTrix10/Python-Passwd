@@ -31,15 +31,32 @@ echo. & echo Checking for Administrative priviledges...
 goto check_Permissions
 
 :check_Permissions
-
     
     net session >nul 2>&1
+
     if %errorLevel% == 0 (
 
         echo. & echo Success: Administrative permissions confirmed.
-        goto copy_Program
-        goto Add_to_PATH
+
+        echo. & echo "Now Installing for you :)"
+        
+        :: copying all code files
+        xcopy "%~dp0scripts" "C:\Program Files\Python-Passwd\" /s /e
+        :: Creating directory for saving credentials
+        cd %APPDATA%
+        mkdir Python-Passwd-Data & cd Python-Passwd-Data
+        mkdir apps emails others social websites
+        :: hiding the directory
+        attrib +h %APPDATA%\Python-Passwd-Data /s /d
+
+        :: appending the location of code files to PATH
+        setx path "%path%;C:\Program Files\Python-Passwd\"
+
+        :: installing python cryptography module
         pip install cryptography
+
+        echo. & echo ========================================================
+
         echo. & echo Success: Installation Complete & echo. & echo Press ENTER to quit....
 
 
@@ -53,22 +70,3 @@ goto check_Permissions
     echo. & echo Press ENTER to quit....
     
     pause >nul
-
-
-
-:copy_Program
-
-    xcopy %CD%\scripts C:\Program Files\Python-Passwd\ /s /e
-    
-    cd %APPDATA%
-    mkdir Python-Passwd-Data
-    cd Python-Passwd-Data
-    mkdir apps emails others social websites
-    :: hiding the directory
-    attrib +h %APPDATA%\Python-Passwd-Data /s /d
-
-
-
-:Add_to_PATH
-
-    setx path "%path%;C:\Program Files\Python-Passwd\"
