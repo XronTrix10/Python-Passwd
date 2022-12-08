@@ -1,4 +1,4 @@
-@echo on
+@echo off
 
 :: This script copies the programs to C:\Program Files directory, appends the location to PATH variable for current user and creates some hidden folders in APPDATA folder to save encrypted passwords
 
