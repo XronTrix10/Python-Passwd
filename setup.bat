@@ -56,6 +56,9 @@ goto check_Permissions
         :: installing python cryptography module
         pip install cryptography >nul 2>&1
 
+        :: Generating a key for encryption and saving permanently
+        python "%~dp0scripts\modules\key_gen.py"
+
         echo. & echo Success: Installation Complete
 
 

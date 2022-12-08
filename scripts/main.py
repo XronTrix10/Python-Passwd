@@ -25,7 +25,6 @@ while True:
     elif choice_1 == 2:
 
         art.header()
-        crypto.isKeyEmpty()
         passwd_manage.main_fun()
 
     elif choice_1 == 3:

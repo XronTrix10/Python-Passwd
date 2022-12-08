@@ -4,26 +4,6 @@ from os import path
 
 key_path = path.expandvars(r'%APPDATA%\Python-Passwd-Data\locker.key')
 
-def isKeyEmpty():
-    # Creating file is doesn't exist
-    f1 = open(key_path, 'w')
-    f1.close
-
-    with open(key_path, 'rb') as filekey:
-        key = filekey.read()
-        # checking if key is empty
-        if len(key) == 0:
-            keyGen()
-
-
-# this function will be triggered onlly on first run
-def keyGen():
-    # key generation
-    key = Fernet.generate_key()
-    # string the key in a file
-    with open(key_path, 'wb') as filekey:
-        filekey.write(key)
-
 
 def changeFile(filePath, mode):
 
@@ -40,10 +20,10 @@ def changeFile(filePath, mode):
 
     changedFile = original
 
-    if mode == "encrypt":
+    if mode == "encode":
         # encrypting the file
         changedFile = fernet.encrypt(original)
-    elif mode == "decrypt":
+    elif mode == "decode":
         # decrypting the file
         changedFile = fernet.decrypt(original)
 

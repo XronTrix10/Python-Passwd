@@ -109,13 +109,13 @@ def file_editor(filePath):
             pswd = input("Enter the password: ")
         comment = input("Enter Comment (Leave empty if not required): ")
 
-        crypto.changeFile(filePath,"decrypt")
+        crypto.changeFile(filePath,"decode")
 
         with open(filePath, 'a') as file:
             file.writelines(
                 f"\n\n----** Acccount {account_no} **----" + f"\n\nlogin: {login}" + f"\nPassword: {pswd}" + f"\nComment: {comment}")
 
-        crypto.changeFile(filePath,"encrypt")
+        crypto.changeFile(filePath,"encode")
 
         art.header()
         print("Credentials were saved !")
@@ -129,7 +129,7 @@ def file_editor(filePath):
 
         art.header()
 
-        crypto.changeFile(filePath,"decrypt")
+        crypto.changeFile(filePath,"decode")
 
         with open(filePath, 'r') as file:
             # read a list of lines into data
@@ -154,7 +154,7 @@ def file_editor(filePath):
         with open(filePath, 'w') as file:
             file.writelines(data)
 
-        crypto.changeFile(filePath,"encrypt")
+        crypto.changeFile(filePath,"encode")
 
         art.header()
         print("File was successfully updated !")
@@ -232,7 +232,7 @@ def file_deleter():
             file_name = os.path.basename(filePath)
             file_name = os.path.splitext(file_name)[0]
 
-            print(f"Permanantly delete {file_name} ?" +
+            print(f"Permanently delete {file_name} ?" +
                   "\nNOTE: This operation can't be undone !")
 
             choice_2 = input("\nYour decision: (Y/n): ").lower()
@@ -253,7 +253,7 @@ def file_deleter():
 
 def file_viewer(filePath):
 
-    crypto.changeFile(filePath,"decrypt")
+    crypto.changeFile(filePath,"decode")
 
     print("\n" + "="*40)
     with open(filePath, 'r') as file:
@@ -262,7 +262,7 @@ def file_viewer(filePath):
             print(lines, end="")
     print("\n\n" + "="*40)
 
-    crypto.changeFile(filePath,"encrypt")
+    crypto.changeFile(filePath,"encode")
 
 
 
@@ -409,9 +409,9 @@ def pswd_saver():
 
         # creating the file
         with open(path_to_file, 'w') as file:
-            file.write("\t\t" + header + "\n")
+            file.write("\n\t\t" + header + "\n")
 
-        crypto.changeFile(path_to_file,"encrypt")
+        crypto.changeFile(path_to_file,"encode")
 
         art.header()
         file_editor(path_to_file)
