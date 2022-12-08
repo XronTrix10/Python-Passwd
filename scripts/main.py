@@ -1,5 +1,5 @@
 import os
-from modules import art, passwd_gen, passwd_manage
+from modules import art, passwd_gen, passwd_manage, crypto
 
 
 art.header()
@@ -25,9 +25,8 @@ while True:
     elif choice_1 == 2:
 
         art.header()
+        crypto.isKeyEmpty()
         passwd_manage.main_fun()
-
-        # a comment
 
     elif choice_1 == 3:
 

@@ -1,5 +1,5 @@
 import os
-from modules import art, passwd_gen
+from modules import art, passwd_gen, crypto
 from os import path
 
 main_path = path.expandvars(r'%APPDATA%\Python-Passwd-Data')
@@ -108,9 +108,14 @@ def file_editor(filePath):
         elif choice_1 == 2:
             pswd = input("Enter the password: ")
         comment = input("Enter Comment (Leave empty if not required): ")
+
+        crypto.changeFile(filePath,"decrypt")
+
         with open(filePath, 'a') as file:
             file.writelines(
                 f"\n\n----** Acccount {account_no} **----" + f"\n\nlogin: {login}" + f"\nPassword: {pswd}" + f"\nComment: {comment}")
+
+        crypto.changeFile(filePath,"encrypt")
 
         art.header()
         print("Credentials were saved !")
@@ -123,6 +128,8 @@ def file_editor(filePath):
     elif choice == 2:
 
         art.header()
+
+        crypto.changeFile(filePath,"decrypt")
 
         with open(filePath, 'r') as file:
             # read a list of lines into data
@@ -146,6 +153,8 @@ def file_editor(filePath):
         # and write everything back
         with open(filePath, 'w') as file:
             file.writelines(data)
+
+        crypto.changeFile(filePath,"encrypt")
 
         art.header()
         print("File was successfully updated !")
@@ -244,12 +253,17 @@ def file_deleter():
 
 def file_viewer(filePath):
 
+    crypto.changeFile(filePath,"decrypt")
+
     print("\n" + "="*40)
     with open(filePath, 'r') as file:
 
         for lines in file:
             print(lines, end="")
     print("\n\n" + "="*40)
+
+    crypto.changeFile(filePath,"encrypt")
+
 
 
 def pswd_viewer():
@@ -340,7 +354,6 @@ def pswd_saver():
     elif choice_1 == 6:
 
         art.header()
-        # print("OPTIONS:\n")
         return
 
     else:
@@ -390,11 +403,16 @@ def pswd_saver():
     elif choice == 2:
 
         art.header()
-        file_name = input("Enter the name of the file: ")
-        file_name += ".pswd"
+        header = input("Enter the name of the file: ")
+        file_name = header + ".pswd"
         path_to_file = os.path.join(files_path, file_name)
-        f1 = open(path_to_file, 'w')
-        f1.close
+
+        # creating the file
+        with open(path_to_file, 'w') as file:
+            file.write("\t\t" + header + "\n")
+
+        crypto.changeFile(path_to_file,"encrypt")
+
         art.header()
         file_editor(path_to_file)
 
