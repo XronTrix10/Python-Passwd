@@ -38,14 +38,15 @@ goto check_Permissions
 
         echo. & echo Success: Administrative permissions confirmed.
 
-        echo. & echo "Now Installing for you :)"
+        echo. & echo Now Installing for you :^)
         
         :: copying all code files
-        xcopy "%~dp0scripts" "C:\Program Files\Python-Passwd\" /s /e >nul 2>&1
+        xcopy "%~dp0scripts" "C:\Program Files\Python-Passwd\" /s /e /y >nul 2>&1
         :: Creating directory for saving credentials
         cd %APPDATA%
-        mkdir Python-Passwd-Data & cd Python-Passwd-Data
-        mkdir apps emails others social websites
+        mkdir Python-Passwd-Data >nul 2>&1
+        cd Python-Passwd-Data   
+        mkdir apps emails others social websites >nul 2>&1
         :: hiding the directory
         attrib +h %APPDATA%\Python-Passwd-Data /s /d
 
@@ -54,8 +55,6 @@ goto check_Permissions
 
         :: installing python cryptography module
         pip install cryptography >nul 2>&1
-
-        echo. & echo ========================================================
 
         echo. & echo Success: Installation Complete
 
@@ -66,6 +65,8 @@ goto check_Permissions
         echo Please right click on the script and click on "Run as administrator"
 
     )
+
+    echo. & echo ========================================================
 
     echo. & echo Press ENTER to quit....
     
