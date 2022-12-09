@@ -15,7 +15,7 @@ specialChars = [')=#\n', '_58\n', 'eR9\n', '93c\n', 'Kf~\n', '66C\n', '49)\n', '
                 '#X1\n', ',)6\n', '0?,\n', 'g4*\n', '`Q!\n', '1iQ\n', 'f4F\n', 'V76\n',
                 '((7\n', '-~9\n', '4Si\n', '9l~\n', '1K1\n', '377\n', '&pA\n', 'ahR\n',
                 '9n3\n', 'Z?7\n', 'Uy9\n', 'v$z\n', 'in3\n', '4K*\n', 'M7`\n', 'P02\n',
-                '7)j\n', '4``\n', '~&g\n', '<`!\n', 'g%2\n', '%3?\n', '37P\n', 'D7(\n',
+                '7)j\n', '4`=\n', '~&g\n', '<`!\n', 'g%2\n', '%3?\n', '37P\n', 'D7(\n',
                 'hxk\n', '_`0\n', '51$\n', 'g0)\n', '~v+\n', '4ho\n', '6yF\n', '7(O\n',
                 '0j8\n', ')>4\n', '*t6\n', '_x<\n', 'x93\n', 'U20\n', 'nCN\n', '*4n\n',
                 'K7g\n', '$.6\n', '3%q\n', '55`\n', 'SgT\n', 'Dk3\n', '=R~\n', '0U.\n',
@@ -27,13 +27,14 @@ specialChars = [')=#\n', '_58\n', 'eR9\n', '93c\n', 'Kf~\n', '66C\n', '49)\n', '
 def encode_file(filePath):
 
     new_file = ""
-
+    shift = 13
     file = open(filePath, 'r').readlines()
 
     for words in file:
         for i in range(len(words)):
             index = chars.index(words[i])
-            new_file += specialChars[index]
+            new_index = (index + shift) % len(specialChars)
+            new_file += specialChars[new_index]
 
     with open(filePath, 'w') as file:
         file.writelines(new_file)
@@ -42,13 +43,16 @@ def encode_file(filePath):
 def decode_file(filePath):
 
     new_file = ""
-
+    shift = 13
     with open(filePath, 'r') as file:
 
         for words in file:
 
             index = specialChars.index(words)
-            new_file += chars[index]
+            new_index = index - shift
+            if new_index < 0:
+                new_index = len(chars) + new_index
+            new_file += chars[new_index]
 
     with open(filePath, 'w') as file:
         file.writelines(new_file)

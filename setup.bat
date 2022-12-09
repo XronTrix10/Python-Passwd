@@ -5,24 +5,28 @@
 Title Setup
 
 :::           
-:::                .--------.
-:::               / .------. \
-:::              / /        \ \
-:::              | |        | |
-:::             _| |________| |_
-:::           .' |_|        |_| '.
-:::           '._____ ____ _____.'
-:::           |     .'____'.     |
-:::           '.__.'.'    '.'.__.'
-:::           '.__  | PSWD |  __.'
-:::           |   '.'.____.'.'   |
-:::           '.____'.____.'____.'
-:::           '.________________.'
+:::                   .--------.
+:::                  / .------. \
+:::                 / /        \ \
+:::                 | |        | |
+:::                _| |________| |_
+:::              .' |_|        |_| '.
+:::              '._____ ____ _____.'
+:::              |     .'____'.     |
+:::              '.__.'.'    '.'.__.'
+:::              '.__  | PSWD |  __.'
+:::              |   '.'.____.'.'   |
+:::              '.____'.____.'____.'
+:::              '.________________.'
 :::           
+:::
+:::
+:::__ __  __   __ _____  ___  __    __    _____ _____ 
+:::|| ||\\||  ((   ||   ||=|| ||    ||    ||==  ||_// 
+:::|| || \|| \_))  ||   || || ||__| ||__| ||___ || \\ 
+        
 
 for /f "delims=: tokens=*" %%A in ('findstr /b ::: "%~f0"') do @echo(%%A
-
-echo. & echo Running Python Password Manager Installer
 
 echo. & echo ========================================================
 
@@ -52,9 +56,6 @@ goto check_Permissions
 
         :: appending the location of code files to PATH
         @REM setx path "%path%;C:\Program Files\Python-Passwd\" >nul 2>&1
-
-        :: Generating a key for encryption and saving permanently
-        python "%~dp0scripts\modules\key_gen.py"
 
         echo. & echo Success: Installation Complete
 
