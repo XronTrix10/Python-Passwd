@@ -30,8 +30,6 @@ for /f "delims=: tokens=*" %%A in ('findstr /b ::: "%~f0"') do @echo(%%A
 
 echo. & echo ========================================================
 
-echo. & echo Checking for Administrative priviledges...
-
 goto check_Permissions
 
 :check_Permissions
@@ -40,9 +38,7 @@ goto check_Permissions
 
     if %errorLevel% == 0 (
 
-        echo. & echo Success: Administrative permissions confirmed.
-
-        echo. & echo Now Installing for you :^)
+        echo. & echo Installing for you :^)
         
         :: copying all code files
         xcopy "%~dp0scripts" "C:\Program Files\Python-Passwd\" /s /e /y >nul 2>&1
@@ -59,7 +55,16 @@ goto check_Permissions
 
         echo. & echo Success: Installation Complete
 
+        echo. & echo Now Just ^1 step left:
 
+        echo. & echo Copy the below line and add into the PATH variable from your system environment variables settings
+
+        echo. & echo C:\Program Files\Python-Passwd
+
+        echo. & echo NOTE: If you don't do this, you won't be able to run it from anywhere from your pc. Ignore if alredy done
+
+        echo. & echo Now open any terminal and type 'pswd' to use the Program
+        
     ) else (
 
         echo. & echo Failure: administrator rights failed !
