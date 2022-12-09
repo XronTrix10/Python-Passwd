@@ -38,5 +38,3 @@
 - Open Terminal or CMD or PowerShell from anywhere, then
         
       pswd
-
-- Hit ENTER
