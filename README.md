@@ -10,6 +10,7 @@
 - The credentials are saved in a hidden directory inside APPDATA folder in encrypted format (.pswd)
 - User can save email, mobile, username, passwords and comments
 - User can have multiple accounts in same website or app
+- User can delete or modify saved credentials
 - Have different categories for credentials
 
 ## Requirements
