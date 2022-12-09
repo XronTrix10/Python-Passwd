@@ -50,16 +50,7 @@ goto check_Permissions
         :: hiding the directory
         attrib +h %APPDATA%\Python-Passwd-Data /s /d
 
-        :: appending the location of code files to PATH
-        :: setx path "%path%;C:\Program Files\Python-Passwd\" >nul 2>&1
-
         echo. & echo Success: Installation Complete
-
-        :: echo. & echo Now Just ^1 step left:
-        :: echo. & echo Copy the below line and add into the PATH variable from your system environment variables settings
-        :: echo. & echo C:\Program Files\Python-Passwd
-        :: echo. & echo NOTE: If you don't do this, you won't be able to run it from anywhere from your pc. Ignore if alredy done
-        :: echo. & echo Now open any terminal and type 'pswd' to use the Program
         
     ) else (
 
