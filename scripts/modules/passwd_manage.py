@@ -409,7 +409,7 @@ def pswd_saver():
 
         # creating the file
         with open(path_to_file, 'w') as file:
-            file.write("\n\t\t" + header + "\n")
+            file.write("\n\t\t[ " + header + " ]\n")
 
         ed.encode_file(path_to_file)
 
