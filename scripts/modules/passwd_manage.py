@@ -1,5 +1,5 @@
 import os
-from modules import art, passwd_gen, crypto
+from modules import art, passwd_gen, ed
 from os import path
 
 main_path = path.expandvars(r'%APPDATA%\Python-Passwd-Data')
@@ -109,13 +109,13 @@ def file_editor(filePath):
             pswd = input("Enter the password: ")
         comment = input("Enter Comment (Leave empty if not required): ")
 
-        crypto.changeFile(filePath,"decode")
+        ed.decode_file(filePath)
 
         with open(filePath, 'a') as file:
             file.writelines(
                 f"\n\n----** Acccount {account_no} **----" + f"\n\nlogin: {login}" + f"\nPassword: {pswd}" + f"\nComment: {comment}")
 
-        crypto.changeFile(filePath,"encode")
+        ed.encode_file(filePath)
 
         art.header()
         print("Credentials were saved !")
@@ -129,7 +129,7 @@ def file_editor(filePath):
 
         art.header()
 
-        crypto.changeFile(filePath,"decode")
+        ed.decode_file(filePath)
 
         with open(filePath, 'r') as file:
             # read a list of lines into data
@@ -154,7 +154,7 @@ def file_editor(filePath):
         with open(filePath, 'w') as file:
             file.writelines(data)
 
-        crypto.changeFile(filePath,"encode")
+        ed.encode_file(filePath)
 
         art.header()
         print("File was successfully updated !")
@@ -253,7 +253,7 @@ def file_deleter():
 
 def file_viewer(filePath):
 
-    crypto.changeFile(filePath,"decode")
+    ed.decode_file(filePath)
 
     print("\n" + "="*40)
     with open(filePath, 'r') as file:
@@ -262,7 +262,7 @@ def file_viewer(filePath):
             print(lines, end="")
     print("\n\n" + "="*40)
 
-    crypto.changeFile(filePath,"encode")
+    ed.encode_file(filePath)
 
 
 
@@ -411,7 +411,7 @@ def pswd_saver():
         with open(path_to_file, 'w') as file:
             file.write("\n\t\t" + header + "\n")
 
-        crypto.changeFile(path_to_file,"encode")
+        ed.encode_file(path_to_file)
 
         art.header()
         file_editor(path_to_file)

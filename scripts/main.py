@@ -1,5 +1,5 @@
 import os
-from modules import art, passwd_gen, passwd_manage, crypto
+from modules import art, passwd_gen, passwd_manage
 
 
 art.header()

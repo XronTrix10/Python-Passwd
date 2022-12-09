@@ -51,10 +51,7 @@ goto check_Permissions
         attrib +h %APPDATA%\Python-Passwd-Data /s /d
 
         :: appending the location of code files to PATH
-        setx path "%path%;C:\Program Files\Python-Passwd\" >nul 2>&1
-
-        :: installing python cryptography module
-        pip install cryptography >nul 2>&1
+        @REM setx path "%path%;C:\Program Files\Python-Passwd\" >nul 2>&1
 
         :: Generating a key for encryption and saving permanently
         python "%~dp0scripts\modules\key_gen.py"
