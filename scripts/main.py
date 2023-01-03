@@ -1,5 +1,5 @@
 import os
-from modules import art, passwd_gen, passwd_manage
+from modules import art, pswdGen, pswdManager
 
 
 art.header()
@@ -13,7 +13,7 @@ while True:
 
     if choice_1 == 1:
 
-        new_paswd = passwd_gen.gen()
+        new_paswd = pswdGen.gen()
 
         art.header()
         print(f"Your Password is: {new_paswd}\n" + "\nNOTE: Copy the password for future use !")
@@ -25,7 +25,7 @@ while True:
     elif choice_1 == 2:
 
         art.header()
-        passwd_manage.main_fun()
+        pswdManager.main_fun()
 
     elif choice_1 == 3:
 

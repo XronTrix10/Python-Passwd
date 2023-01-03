@@ -1,5 +1,5 @@
 import os
-from modules import art, passwd_gen, ed
+from modules import art, pswdGen, endeCRYPT
 from os import path
 
 main_path = path.expandvars(r'%APPDATA%\Python-Passwd-Data')
@@ -93,7 +93,7 @@ def paswd_editor():
 def file_editor(filePath):
 
     print("OPTIONS: ")
-    print("\n\t(1) Add an account\n\t(2) Edit the file")
+    print("\n\t(1) Add an account\n\t(2) edit the file")
     choice = int(input("\nEnter your choice: "))
     pswd = ""
     if choice == 1:
@@ -104,18 +104,18 @@ def file_editor(filePath):
         print("\n\t(1) Generate Password\n\t(2) Enter Password")
         choice_1 = int(input("\nEnter your Choice: "))
         if choice_1 == 1:
-            pswd = passwd_gen.gen()
+            pswd = pswdGen.gen()
         elif choice_1 == 2:
             pswd = input("Enter the password: ")
         comment = input("Enter Comment (Leave empty if not required): ")
 
-        ed.decode_file(filePath)
+        endeCRYPT.decode_file(filePath)
 
         with open(filePath, 'a') as file:
             file.writelines(
                 f"\n\n----** Acccount {account_no} **----" + f"\n\nlogin: {login}" + f"\nPassword: {pswd}" + f"\nComment: {comment}")
 
-        ed.encode_file(filePath)
+        endeCRYPT.encode_file(filePath)
 
         art.header()
         print("Credentials were saved !")
@@ -129,7 +129,7 @@ def file_editor(filePath):
 
         art.header()
 
-        ed.decode_file(filePath)
+        endeCRYPT.decode_file(filePath)
 
         with open(filePath, 'r') as file:
             # read a list of lines into data
@@ -154,7 +154,7 @@ def file_editor(filePath):
         with open(filePath, 'w') as file:
             file.writelines(data)
 
-        ed.encode_file(filePath)
+        endeCRYPT.encode_file(filePath)
 
         art.header()
         print("File was successfully updated !")
@@ -253,7 +253,7 @@ def file_deleter():
 
 def file_viewer(filePath):
 
-    ed.decode_file(filePath)
+    endeCRYPT.decode_file(filePath)
 
     print("\n" + "="*40)
     with open(filePath, 'r') as file:
@@ -262,7 +262,7 @@ def file_viewer(filePath):
             print(lines, end="")
     print("\n\n" + "="*40)
 
-    ed.encode_file(filePath)
+    endeCRYPT.encode_file(filePath)
 
 
 
@@ -411,7 +411,7 @@ def pswd_saver():
         with open(path_to_file, 'w') as file:
             file.write("\n\t\t[ " + header + " ]\n")
 
-        ed.encode_file(path_to_file)
+        endeCRYPT.encode_file(path_to_file)
 
         art.header()
         file_editor(path_to_file)
@@ -431,7 +431,7 @@ def main_fun():
 
         print("AVAILABLE OPTIONS:\n")
         print(
-            "\t(1) View saved passwords\n\t(2) Add a new credential\n\t(3) Edit a File\n\t(4) Delete a File\n\t[5] Back")
+            "\t(1) View saved passwords\n\t(2) Add a new credential\n\t(3) edit a File\n\t(4) Delete a File\n\t[5] Back")
         choice = int(input("\nYour choice: "))
 
         if choice == 1:
