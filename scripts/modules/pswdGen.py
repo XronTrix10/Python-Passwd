@@ -21,11 +21,15 @@ def gen():
 
         nr_letters = 0
         while nr_letters < 8:
-            nr_letters = int(
-                input("Length of the password you would like: "))
-            if nr_letters < 8:
+            try:
+                nr_letters = int(input("Length of the password you would like: "))
+            except ValueError:
                 art.header()
-                print("Length is too short !! Try at least 8\n")
+                print("Wrong INPUT !!\n")
+            else:
+                if nr_letters < 8:
+                    art.header()
+                    print("Length is too short !! Try at least 8\n")
 
         passwd = ""
 

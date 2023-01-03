@@ -5,18 +5,30 @@ from modules import art, pswdGen, pswdManager
 art.header()
 print(f"What you upto {os.environ.get('USERNAME')} ?\n")
 
+# Handling Proper Choice
 while True:
 
-    print("\t(1) Generate a password\n\t(2) Manage your passwords\n\t[3] Exit")
+    # Handling ValueError Exception
+    while True:
 
-    choice_1 = int(input("\nEnter your choice: "))
+        try:
+            print("\t(1) Generate a password\n\t(2) Manage your passwords\n\t[3] Exit")
+            choice_1 = int(input("\nEnter your choice: "))
+        except ValueError:
+            art.header()
+            print("Please enter Proper Choice !\n")
+        else:
+            break
 
     if choice_1 == 1:
 
         new_paswd = pswdGen.gen()
 
         art.header()
-        print(f"Your Password is: {new_paswd}\n" + "\nNOTE: Copy the password for future use !")
+        print(
+            f"Your Password is: {new_paswd}\n"
+            + "\nNOTE: Copy the password for future use !"
+        )
 
         input("\nPress ENTER to Continue...")
         art.header()
@@ -29,7 +41,7 @@ while True:
 
     elif choice_1 == 3:
 
-        os.system('cls')
+        os.system("cls")
         print(art.bye)
         break
 

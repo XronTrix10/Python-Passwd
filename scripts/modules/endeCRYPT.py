@@ -1,5 +1,6 @@
-# This script encodes and decodes pswd file
+from modules import art
 
+# This script encodes and decodes pswd file
 
 chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
          'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -28,31 +29,65 @@ def encode_file(filePath):
 
     new_file = ""
     shift = 13
-    file = open(filePath, 'r').readlines()
 
-    for words in file:
-        for i in range(len(words)):
-            index = chars.index(words[i])
-            new_index = (index + shift) % len(specialChars)
-            new_file += specialChars[new_index]
+    try:
+        file = open(filePath, "r").readlines()
 
-    with open(filePath, 'w') as file:
+    except EnvironmentError:
+        print("File Encoding FAILED !")
+        return 1
+
+    else:
+
+        for words in file:
+
+            for i in range(len(words)):
+
+                try:
+                    index = chars.index(words[i])
+                except ValueError:
+                    print("ERROR Encoding File !")
+                    input("\nPress ENTER to go back....")
+                    art.header()
+                    return 1
+                else:
+                    new_index = (index + shift) % len(specialChars)
+                    new_file += specialChars[new_index]
+
+    with open(filePath, "w") as file:
         file.writelines(new_file)
+
+
 
 
 def decode_file(filePath):
 
     new_file = ""
     shift = 13
-    with open(filePath, 'r') as file:
+    
+    try:
 
-        for words in file:
+        with open(filePath, "r") as file:
 
-            index = specialChars.index(words)
-            new_index = index - shift
-            if new_index < 0:
-                new_index = len(chars) + new_index
-            new_file += chars[new_index]
+            for words in file:
 
-    with open(filePath, 'w') as file:
+                try:
+                    index = specialChars.index(words)
+                except ValueError:
+                    print("ERROR Decoding File !")
+                    input("\nPress ENTER to go back....")
+                    art.header()
+                    return 1
+                else:
+                    new_index = index - shift
+                    if new_index < 0:
+                        new_index = len(chars) + new_index
+                    new_file += chars[new_index]
+
+    except EnvironmentError:
+
+        print("File Decoding FAILED !")
+        return 1
+
+    with open(filePath, "w") as file:
         file.writelines(new_file)
