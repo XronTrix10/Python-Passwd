@@ -42,66 +42,7 @@ def file_editor(filePath):
 
     if choice == 1:
 
-        art.header()
-        print(art.clr.lightblue)
-        account_no = input("Enter the account number: ")
-        art.header()
-        print(art.clr.lightblue)
-        login = input("Enter the login (email / mobile / username): ")
-        art.header()
-
-        # Handling Exception
-        while True:
-
-            try:
-                print(
-                    art.clr.pink,
-                    "\n\t(1) Generate Password\n\t(2) Enter Password",
-                    art.clr.lightblue,
-                )
-                choice_1 = int(input("\nEnter your Choice: "))
-                if choice_1 < 1 or choice_1 > 2:
-                    raise ValueError_1
-
-            except ValueError:
-                art.header()
-                print(art.clr.red, "Wrong CHOICE !!\n")
-
-            except ValueError_1:
-                art.header()
-                print(art.clr.red, "Wrong INPUT !!\n")
-
-            else:
-                if choice_1 == 1:
-                    pswd = pswdGen.gen()
-                elif choice_1 == 2:
-                    art.header()
-                    print(art.clr.lightblue)
-                    pswd = input("Enter the password: ")
-
-            art.header()
-            print(art.clr.lightblue)
-            comment = input("Enter Comment (Leave empty if not required): ")
-
-            endeCRYPT.decode_file(filePath)
-
-            with open(filePath, "a") as file:
-                file.writelines(
-                    f"\n\n----** Acccount {account_no} **----"
-                    + f"\n\nlogin: {login}"
-                    + f"\nPassword: {pswd}"
-                    + f"\nComment: {comment}"
-                )
-
-            endeCRYPT.encode_file(filePath)
-
-            art.header()
-            print(art.clr.green, "Credentials were saved !", art.clr.reset)
-            pswdManager.file_viewer(filePath)
-            print(art.clr.cyan)
-            input("\nPress ENTER to Continue...")
-            art.header()
-            return
+        add_account(filePath)
 
     elif choice == 2:
 
@@ -121,6 +62,7 @@ def file_editor(filePath):
                     print(art.clr.disable, f"({i}) {data[i]}", end="")
 
                 print(
+                    art.clr.reset,
                     art.clr.red,
                     "\n\nNow, Carefully enter the line number (shown on left) that you want to edit"
                     + "\n\nNOTE: That line MUST contain either login or password !!",
@@ -155,13 +97,6 @@ def file_editor(filePath):
 
         input("\nPress ENTER to Continue...")
         art.header()
-        print(
-            art.clr.orange,
-            art.clr.underline,
-            art.clr.bold,
-            "OPTIONS:",
-            art.clr.reset,
-        )
         return
 
     else:
@@ -169,3 +104,65 @@ def file_editor(filePath):
         art.header()
         print(art.clr.red, f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n")
         file_editor(filePath)
+
+
+def add_account(filePath):
+
+    art.header()
+    print(art.clr.lightblue)
+    account_no = input("Enter the account number: ")
+    art.header()
+    print(art.clr.lightblue)
+    login = input("Enter the login (email / mobile / username): ")
+    art.header()
+    pswd = ""
+
+    # Handling Exception
+    while True:
+
+        try:
+            print(
+                art.clr.pink,
+                "\n\t(1) Generate Password\n\t(2) Enter Password",
+                art.clr.lightblue,
+            )
+            choice_1 = int(input("\nEnter your Choice: "))
+            if choice_1 < 1 or choice_1 > 2:
+                raise ValueError
+
+        except ValueError:
+            art.header()
+            print(art.clr.red, "Wrong CHOICE !!\n")
+
+        else:
+            if choice_1 == 1:
+                pswd = pswdGen.gen()
+                break
+            elif choice_1 == 2:
+                art.header()
+                print(art.clr.lightblue)
+                pswd = input("Enter the password: ")
+                break
+
+    art.header()
+    print(art.clr.lightblue)
+    comment = input("Enter Comment (Leave empty if not required): ")
+
+    endeCRYPT.decode_file(filePath)
+
+    with open(filePath, "a") as file:
+        file.writelines(
+            f"\n\n----** Acccount {account_no} **----"
+            + f"\n\nlogin: {login}"
+            + f"\nPassword: {pswd}"
+            + f"\nComment: {comment}"
+        )
+
+    endeCRYPT.encode_file(filePath)
+
+    art.header()
+    print(art.clr.green, "Credentials were saved !", art.clr.reset)
+    pswdManager.file_viewer(filePath)
+    print(art.clr.cyan)
+    input("\nPress ENTER to Continue...")
+    art.header()

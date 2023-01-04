@@ -96,7 +96,7 @@ def pswd_saver():
                 endeCRYPT.encode_file(filePath)
 
                 art.header()
-                fileEditor.file_editor(filePath)
+                fileEditor.add_account(filePath)
                 break
 
 

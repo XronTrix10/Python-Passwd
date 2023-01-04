@@ -26,9 +26,15 @@ def filePath_Selector(main_path):
                 print(art.clr.lightblue)
                 choice = int(input("\nYour choice: "))
 
+                if choice < 1 or choice > 6:
+                    raise ValueError
+
             except ValueError:
                 art.header()
-                print(art.clr.red, "Wrong INPUT !!\n")
+                print(
+                        art.clr.red,
+                        f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n",
+                    )
                 print(
                     art.clr.pink,
                     "\n\t(1) Social Accounts\n\t(2) Email IDs\n\t(3) Websites\n\t(4) Apps\n\t(5) Others\n\t[6] Back",
@@ -36,15 +42,7 @@ def filePath_Selector(main_path):
 
             else:
 
-                if choice < 1 or choice > 6:
-
-                    art.header()
-                    print(
-                        art.clr.red,
-                        f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n",
-                    )
-
-                elif choice == 6:
+                if choice == 6:
 
                     art.header()
                     return main_path
