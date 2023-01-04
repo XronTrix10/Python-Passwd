@@ -21,10 +21,12 @@ def fileManage(para):
     # If the directory was not found
     except FileNotFoundError:
         print(
-            "\nDirectory for the saved passwords was NOT FOUND !!\n\nProbable Causes :"
+            art.clr.red,
+            "\nDirectory for the saved passwords was NOT FOUND !!\n\nProbable Causes :",
         )
         print(
-            "\t(1) The Setup was UNSECCESSFULL !!\n\t(2) The Folder was accidentally MOVED or DELETED !!"
+            "\t(1) The Setup was UNSECCESSFULL !!\n\t(2) The Folder was accidentally MOVED or DELETED !!",
+            art.clr.cyan,
         )
         input("\nPress ENTER to go back....")
         art.header()
@@ -35,10 +37,16 @@ def fileManage(para):
         # Checking if the folder is empty
         if len(list) == 0:
 
-            print("No Files here :^)")
+            print(art.clr.purple, "\nNo Files here :^)", art.clr.cyan)
             input("\nPress ENTER to go back....")
             art.header()
-            print("OPTIONS:\n")
+            print(
+                art.clr.orange,
+                art.clr.underline,
+                art.clr.bold,
+                "OPTIONS:",
+                art.clr.reset,
+            )
             fileManage(para)
 
         else:
@@ -51,10 +59,10 @@ def fileManage(para):
                 try:
 
                     for i in range(len(list)):
-                        print(f"\t({i+1})", list[i].split(".")[0])
+                        print(art.clr.pink, f"\t({i+1})", list[i].split(".")[0])
 
                     # If the user wants to enter another directory
-                    print(f"\t[{len(list) + 1}] Back")
+                    print(f"\t[{len(list) + 1}] Back", art.clr.lightblue)
 
                     choice_1 = int(input("\nYour Choice: "))
 
@@ -63,11 +71,11 @@ def fileManage(para):
 
                 except ValueError:
                     art.header()
-                    print("Wrong INPUT !!\n")
+                    print(art.clr.red, "Wrong INPUT !!\n")
 
                 except ValueError_1:
                     art.header()
-                    print("Wrong CHOICE !!\n")
+                    print(art.clr.red, "Wrong CHOICE !!\n")
 
                 else:
                     # if user wants to go back
@@ -102,6 +110,7 @@ def pswd_viewer(filePath):
     status = pswdManager.file_viewer(filePath)
 
     if status != 1:
+        print(art.clr.lightblue)
         choice_2 = input("\nDo you want to edit the file ? (Y/n): ").lower()
 
         if choice_2 == "y":
@@ -126,7 +135,11 @@ def file_deleter(filePath):
     file_name = os.path.splitext(file_name)[0]
 
     print(
-        f"Permanently delete {file_name} ?" + "\nNOTE: This operation can't be undone !"
+        art.clr.red,
+        f"\nPermanently delete {file_name} ?" + art.clr.bold,
+        " [ NOTE: This operation can't be undone ! ]",
+        art.clr.reset,
+        art.clr.lightblue,
     )
 
     choice_2 = input("\nYour decision: (Y/n): ").lower()
@@ -134,14 +147,13 @@ def file_deleter(filePath):
     if choice_2 == "y":
 
         art.header()
-        print(f"{file_name} was deleted forever !")
+        print(art.clr.red, f"{file_name} was deleted forever !", art.clr.cyan)
         os.remove(filePath)
         input("\nPress ENTER to Continue...")
         art.header()
 
     else:
         art.header()
-        print("OPTIONS:\n")
         return
 
 

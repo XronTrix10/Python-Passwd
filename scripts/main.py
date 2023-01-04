@@ -3,7 +3,7 @@ from modules import art, pswdGen, pswdManager
 
 
 art.header()
-print(f"What you upto {os.environ.get('USERNAME')} ?\n")
+print(art.clr.cyan, f"What you upto {os.environ.get('USERNAME')} ?")
 
 # Handling Proper Choice
 while True:
@@ -12,11 +12,15 @@ while True:
     while True:
 
         try:
-            print("\t(1) Generate a password\n\t(2) Manage your passwords\n\t[3] Exit")
+            print(
+                art.clr.pink,
+                "\n\t(1) Generate a password\n\t(2) Manage your passwords\n\t[3] Exit",
+                art.clr.lightblue,
+            )
             choice_1 = int(input("\nEnter your choice: "))
         except ValueError:
             art.header()
-            print("Please enter Proper Choice !\n")
+            print(art.clr.red, "Please enter Proper Choice !")
         else:
             break
 
@@ -26,13 +30,22 @@ while True:
 
         art.header()
         print(
-            f"Your Password is: {new_paswd}\n"
-            + "\nNOTE: Copy the password for future use !"
+            art.clr.cyan,
+            "\nYour Password is: " + art.clr.green,
+            f"{new_paswd}\n" + art.clr.red,
+            "\nNOTE: Copy the password for future use !",
+            art.clr.cyan,
         )
 
         input("\nPress ENTER to Continue...")
         art.header()
-        print("OPTIONS:\n")
+        print(
+            art.clr.orange,
+            art.clr.underline,
+            art.clr.bold,
+            "OPTIONS:",
+            art.clr.reset,
+        )
 
     elif choice_1 == 2:
 
@@ -42,10 +55,12 @@ while True:
     elif choice_1 == 3:
 
         os.system("cls")
-        print(art.bye)
+        print(art.clr.orange, art.clr.bold, art.bye, art.clr.reset)
         break
 
     else:
 
         art.header()
-        print(f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n")
+        print(
+            art.clr.red, f"WRONG choice {os.environ.get('USERNAME')} ! Try again !"
+        )

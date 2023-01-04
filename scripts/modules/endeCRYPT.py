@@ -34,7 +34,7 @@ def encode_file(filePath):
         file = open(filePath, "r").readlines()
 
     except EnvironmentError:
-        print("File Encoding FAILED !")
+        print(art.clr.red,"File Encoding FAILED !",art.clr.reset)
         return 1
 
     else:
@@ -46,7 +46,7 @@ def encode_file(filePath):
                 try:
                     index = chars.index(words[i])
                 except ValueError:
-                    print("ERROR Encoding File !")
+                    print(art.clr.red,"ERROR occured while encrypting File !",art.clr.lightblue)
                     input("\nPress ENTER to go back....")
                     art.header()
                     return 1
@@ -74,7 +74,7 @@ def decode_file(filePath):
                 try:
                     index = specialChars.index(words)
                 except ValueError:
-                    print("ERROR Decoding File !")
+                    print(art.clr.red,"ERROR occured while decrypting File !",art.clr.lightblue)
                     input("\nPress ENTER to go back....")
                     art.header()
                     return 1
@@ -86,7 +86,7 @@ def decode_file(filePath):
 
     except EnvironmentError:
 
-        print("File Decoding FAILED !")
+        print(art.clr.red,"File Decoding FAILED !",art.clr.reset)
         return 1
 
     with open(filePath, "w") as file:

@@ -14,18 +14,28 @@ def file_editor(filePath):
 
     while True:
         try:
-            print("OPTIONS: ")
-            print("\n\t(1) Add an account\n\t(2) Edit existing credentials")
+            print(
+                art.clr.orange,
+                art.clr.underline,
+                art.clr.bold,
+                "OPTIONS:",
+                art.clr.reset,
+            )
+            print(
+                art.clr.pink,
+                "\n\t(1) Add an account\n\t(2) Edit existing credentials",
+                art.clr.lightblue,
+            )
             temp = int(input("\nEnter your choice: "))
 
             if temp < 1 or temp > 2:
                 raise ValueError_1
         except ValueError:
             art.header()
-            print("Wrong CHOICE !!\n")
+            print(art.clr.red, "Wrong INPUT !!\n")
         except ValueError_1:
             art.header()
-            print("Wrong INPUT !!\n")
+            print(art.clr.red, "Wrong CHOICE !!\n")
         else:
             choice = temp
             break
@@ -33,8 +43,10 @@ def file_editor(filePath):
     if choice == 1:
 
         art.header()
+        print(art.clr.lightblue)
         account_no = input("Enter the account number: ")
         art.header()
+        print(art.clr.lightblue)
         login = input("Enter the login (email / mobile / username): ")
         art.header()
 
@@ -42,26 +54,33 @@ def file_editor(filePath):
         while True:
 
             try:
-                print("\n\t(1) Generate Password\n\t(2) Enter Password")
+                print(
+                    art.clr.pink,
+                    "\n\t(1) Generate Password\n\t(2) Enter Password",
+                    art.clr.lightblue,
+                )
                 choice_1 = int(input("\nEnter your Choice: "))
                 if choice_1 < 1 or choice_1 > 2:
                     raise ValueError_1
 
             except ValueError:
                 art.header()
-                print("Wrong CHOICE !!\n")
+                print(art.clr.red, "Wrong CHOICE !!\n")
 
             except ValueError_1:
                 art.header()
-                print("Wrong INPUT !!\n")
+                print(art.clr.red, "Wrong INPUT !!\n")
 
             else:
                 if choice_1 == 1:
                     pswd = pswdGen.gen()
                 elif choice_1 == 2:
+                    art.header()
+                    print(art.clr.lightblue)
                     pswd = input("Enter the password: ")
 
             art.header()
+            print(art.clr.lightblue)
             comment = input("Enter Comment (Leave empty if not required): ")
 
             endeCRYPT.decode_file(filePath)
@@ -77,8 +96,9 @@ def file_editor(filePath):
             endeCRYPT.encode_file(filePath)
 
             art.header()
-            print("Credentials were saved !")
+            print(art.clr.green, "Credentials were saved !", art.clr.reset)
             pswdManager.file_viewer(filePath)
+            print(art.clr.cyan)
             input("\nPress ENTER to Continue...")
             art.header()
             return
@@ -98,11 +118,13 @@ def file_editor(filePath):
             try:
                 # Print Lines of file
                 for i in range(len(data)):
-                    print(f"({i}) {data[i]}", end="")
+                    print(art.clr.disable, f"({i}) {data[i]}", end="")
 
                 print(
+                    art.clr.red,
                     "\n\nNow, Carefully enter the line number (shown on left) that you want to edit"
-                    + "\n\nNOTE: That line MUST contain either login or password !!"
+                    + "\n\nNOTE: That line MUST contain either login or password !!",
+                    art.clr.lightblue,
                 )
 
                 line_no = int(input("\nEnter line number: "))
@@ -111,12 +133,12 @@ def file_editor(filePath):
 
             except ValueError:
                 art.header()
-                print("Wrong INPUT !!\n")
+                print(art.clr.red, "Wrong INPUT !!\n")
             else:
                 break
 
         art.header()
-        print("\nNow Enter the new credential: \n")
+        print(art.clr.lightblue, "\nNow Enter the new credential: \n")
         line = data[line_no].split()
 
         credential = input(f"{line[0]} ")
@@ -129,15 +151,21 @@ def file_editor(filePath):
         endeCRYPT.encode_file(filePath)
 
         art.header()
-        print("File was successfully updated !")
+        print(art.clr.green, "File was successfully updated !", art.clr.cyan)
 
         input("\nPress ENTER to Continue...")
         art.header()
-        print("OPTIONS: \n")
+        print(
+            art.clr.orange,
+            art.clr.underline,
+            art.clr.bold,
+            "OPTIONS:",
+            art.clr.reset,
+        )
         return
 
     else:
 
         art.header()
-        print(f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n")
+        print(art.clr.red, f"WRONG choice {os.environ.get('USERNAME')} ! Try again !\n")
         file_editor(filePath)

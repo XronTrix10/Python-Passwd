@@ -14,12 +14,13 @@ def file_viewer(filePath):
     status = endeCRYPT.decode_file(filePath)
 
     if status != 1:
-        print("\n" + "=" * 40)
-        with open(filePath, "r") as file:
+        print(art.clr.blue, "\n" + "=" * 60)
 
+        with open(filePath, "r") as file:
             for lines in file:
-                print(lines, end="")
-        print("\n\n" + "=" * 40)
+                print(art.clr.green, lines, end="")
+
+        print(art.clr.blue, "\n\n" + "=" * 60)
     else:
         return 1
 
@@ -33,26 +34,32 @@ def pswd_saver():
     while True:
 
         try:
-            print("\nPlease SELECT or CREATE a file: ")
-            print("\n\t(1) SELECT\n\t(2) CREATE")
+            print(
+                art.clr.bold,
+                art.clr.orange,
+                "\nPlease SELECT a file or CREATE a new file: ",
+                art.clr.reset,
+            )
+            print(art.clr.pink, "\n\t(1) SELECT\n\t(2) CREATE", art.clr.lightblue)
             choice = int(input("\nYour choice: "))
             if choice < 0 or choice > 2:
                 raise ValueError_1
 
         except ValueError:
             art.header()
-            print("Wrong INPUT !!")
+            print(art.clr.red, "Wrong INPUT !!\n")
 
         except ValueError_1:
             art.header()
-            print("Wrong CHOICE !!")
+            print(art.clr.red, "Wrong CHOICE !!\n")
 
         else:
 
+            art.header()
             if choice == 1:
 
                 fileManager.fileManage(4)
-                break
+                return
 
             elif choice == 2:
 
@@ -62,8 +69,21 @@ def pswd_saver():
                     return
 
                 art.header()
+
+                # Listing The present files
+                list = os.listdir(files_path)
+                if len(list) != 0:
+                    print(art.clr.blue, "\nAlready Present Files: \n")
+                    for i in range(len(list)):
+                        print(art.clr.pink, f"\t({i+1})", list[i].split(".")[0])
+                else:
+                    print(art.clr.green, "\nNo Files here, create one !")
+
                 print(
-                    "Now, give a name to your file. [ Example: Facebook, Instagram...etc ]\n"
+                    "\nNow, give a name to your file. [ Example: Facebook, Instagram...etc ]\n"
+                    + art.clr.red,
+                    "\nNOTE: Don't use name of already present file !\n",
+                    art.clr.cyan,
                 )
                 header = input("Name: ")
                 file_name = header + ".pswd"
@@ -79,11 +99,6 @@ def pswd_saver():
                 fileEditor.file_editor(filePath)
                 break
 
-            else:
-
-                art.header()
-                print("WRONG choice ! Try again !\n")
-
 
 def main_fun():
 
@@ -91,9 +106,17 @@ def main_fun():
 
         try:
 
-            print("AVAILABLE OPTIONS:\n")
             print(
-                "\t(1) View saved passwords\n\t(2) Add a new credential\n\t(3) edit a File\n\t(4) Delete a File\n\t[5] Back"
+                art.clr.orange,
+                art.clr.underline,
+                art.clr.bold,
+                "AVAILABLE OPTIONS:",
+                art.clr.reset,
+            )
+            print(
+                art.clr.pink,
+                "\n\t(1) View saved passwords\n\t(2) Add a new credential\n\t(3) edit a File\n\t(4) Delete a File\n\t[5] Back",
+                art.clr.lightblue,
             )
 
             choice = int(input("\nYour choice: "))
@@ -103,18 +126,24 @@ def main_fun():
 
         except ValueError:
             art.header()
-            print("Wrong INPUT !!\n")
+            print(art.clr.red, "Wrong INPUT !!\n")
 
         except ValueError_1:
             art.header()
-            print("Wrong CHOICE !!\n")
+            print(art.clr.red, "Wrong CHOICE !!\n")
 
         else:
 
             if choice == 1:
 
                 art.header()
-                print("AVAILABLE OPTIONS:\n")
+                print(
+                    art.clr.orange,
+                    art.clr.underline,
+                    art.clr.bold,
+                    "AVAILABLE OPTIONS:",
+                    art.clr.reset,
+                )
                 fileManager.fileManage(1)
 
             elif choice == 2:
@@ -135,5 +164,11 @@ def main_fun():
             elif choice == 5:
 
                 art.header()
-                print("OPTIONS:\n")
+                print(
+                    art.clr.orange,
+                    art.clr.underline,
+                    art.clr.bold,
+                    "OPTIONS:",
+                    art.clr.reset,
+                )
                 return
