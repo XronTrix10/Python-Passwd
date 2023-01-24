@@ -1,5 +1,7 @@
 # Python-Passwd
 
+![Image](https://user-images.githubusercontent.com/98148986/214376506-cf66d4e0-2bd6-4028-b122-b6abb8a69454.png)
+
 ### This is a simple CLI encryption based local password manager for those who don't want to rely upon third party online password managers
 
 ---
@@ -31,7 +33,10 @@
     3. edit PATH variable
     4. Click New
     5. Add "C:\Program Files\Python-Passwd" without quotes
-    6. Click OK
+
+    <img src="https://user-images.githubusercontent.com/98148986/214379647-137e1473-8291-4818-8bba-fddbc1fd71dc.png" width="80%" height="30%">
+
+    6. Now Click OK
 
 ## Usage
 
