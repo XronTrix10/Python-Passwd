@@ -19,6 +19,11 @@
 
 - System must have Python 3.x pre-installed
 
+## This is for windows only
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=flate&logo=windows&logoColor=white)](https://github.com/XronTrix10/Python-Passwd/tree/windows)
+## Checkout Linux
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://github.com/XronTrix10/Python-Passwd/tree/linux)
+
 ## Installation
 
 1. [Download](https://codeload.github.com/XronTrix10/Python-Passwd/zip/refs/heads/windows) the Repo or,
