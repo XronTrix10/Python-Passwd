@@ -1,6 +1,10 @@
 # Python-Passwd
 
-![Image](https://user-images.githubusercontent.com/98148986/214376506-cf66d4e0-2bd6-4028-b122-b6abb8a69454.png)
+## This Linux Branch is under development !
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://github.com/XronTrix10/Python-Passwd/tree/linux)
+
+## Checkout Windows
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=flate&logo=windows&logoColor=white)](https://github.com/XronTrix10/Python-Passwd/tree/windows)
 
 ### This is a simple CLI encryption based local password manager for those who don't want to rely upon third party online password managers
 
@@ -20,11 +24,7 @@
 - System must have Python 3.x pre-installed
 
 
-## This Linux Branch is under development !
-[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://github.com/XronTrix10/Python-Passwd/tree/linux)
 
-## Checkout Windows
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=flate&logo=windows&logoColor=white)](https://github.com/XronTrix10/Python-Passwd/tree/windows)
 
 <!-- ## Installation
 
