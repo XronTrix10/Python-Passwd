@@ -1,5 +1,13 @@
 import os
-from modules import art, pswdGen, endeCRYPT, fileEditor, fileManager, fileSelector
+from modules import (
+    art,
+    pswdGen,
+    endeCRYPT,
+    fileEditor,
+    fileManager,
+    fileSelector,
+    MainPasswd,
+)
 from os import path
 
 main_path = path.expandvars(r"%APPDATA%\Python-Passwd-Data")
@@ -172,3 +180,18 @@ def main_fun():
                     art.clr.reset,
                 )
                 return
+
+
+def Authentication():
+
+    if MainPasswd.authVault():
+        main_fun()
+    else:
+        print(
+            art.clr.orange,
+            art.clr.underline,
+            art.clr.bold,
+            "OPTIONS:",
+            art.clr.reset,
+        )
+        return

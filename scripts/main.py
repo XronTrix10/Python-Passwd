@@ -50,7 +50,7 @@ while True:
     elif choice_1 == 2:
 
         art.header()
-        pswdManager.main_fun()
+        pswdManager.Authentication()
 
     elif choice_1 == 3:
 
