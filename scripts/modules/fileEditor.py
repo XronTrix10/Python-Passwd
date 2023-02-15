@@ -1,8 +1,5 @@
 import os
 from modules import art, pswdGen, endeCRYPT, pswdManager
-from os import path
-
-main_path = path.expandvars(r"%APPDATA%\Python-Passwd-Data")
 
 
 def file_editor(filePath):
@@ -10,7 +7,6 @@ def file_editor(filePath):
         pass
 
     choice = 0
-    pswd = ""
 
     while True:
         try:
