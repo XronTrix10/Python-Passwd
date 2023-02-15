@@ -11,6 +11,7 @@
 - Has inbuilt strong password generator
 - The credentials are saved in a hidden directory inside APPDATA folder in encrypted format (.pswd)
 - uses advanced & modified cipher text algorithm for encryption
+- Has Vault Lock Protection
 - User can save email, mobile, username, passwords and comments
 - User can have multiple accounts in same website or app
 - User can delete or modify saved credentials
