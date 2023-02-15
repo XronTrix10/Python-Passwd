@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-SOURCE_DIR="/home/ben/scripts"
+SOURCE_DIR="$(pwd)/scripts"
 DEST_DIR="/etc/app"
 PYTHON_FILE="/home/ben/fileName.py"
 
