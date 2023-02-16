@@ -30,7 +30,7 @@
 
 1. [Download](https://codeload.github.com/XronTrix10/Python-Passwd/zip/refs/heads/windows) the Repo or,
 
-       git clone https://github.com/XronTrix10/Python-Passwd
+       git clone -b windows https://github.com/XronTrix10/Python-Passwd
 
 2. Run the setup file as Administrator
 3. Add the Script location to PATH
