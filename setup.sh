@@ -2,14 +2,67 @@
 
 # Variables
 SOURCE_DIR="$(pwd)/scripts"
-DEST_DIR="/etc/app"
-PYTHON_FILE="/home/ben/fileName.py"
-
-# Copy the whole folder
-cp -r $SOURCE_DIR $DEST_DIR
-
-# Make the destination folder hidden
-chmod -R 700 $DEST_DIR
+DEST_DIR="/srv"
+PYTHON_FILE="$DEST_DIR/.Python-Passwd/main.py"
 
 # Create a permanent alias to run the python file
-echo "alias pythonfile='python3 $PYTHON_FILE'" >> ~/.bashrc
+echo "alias pswd='python3 $PYTHON_FILE'" >> ~/.bashrc
+
+echo "
+    
+    
+                   
+                           .--------.
+                          / .------. \
+                         / /        \ \
+                         | |        | |
+                        _| |________| |_
+                      .' |_|        |_| '.
+                      '._____ ____ _____.'
+                      |     .'____'.     |
+                      '.__.'.'    '.'.__.'
+                      '.__  | PSWD |  __.'
+                      |   '.'.____.'.'   |
+                      '.____'.____.'____.'
+                      '.________________.'
+                   
+        
+        
+        __ __  __   __ _____  ___  __    __    _____ _____ 
+        || ||\ ||  ((   ||   ||=|| ||    ||    ||==  ||_// 
+        || || \|| \_))  ||   || || ||__| ||__| ||___ || \\ 
+
+
+"
+
+echo "========================================================"
+
+if [ $(id -u) != 0 ]; then
+echo "
+Please Grant sudo permissions !
+
+"
+fi
+
+    
+    # Copy the whole folder
+    sudo cp -r $SOURCE_DIR $DEST_DIR
+
+    # Rename and hide the folder
+    cd /srv
+    sudo mv scripts .Python-Passwd &>/dev/null
+
+    # Create folder for credential Files
+    cd /opt
+    sudo mkdir .Python-Passwd-Data &>/dev/null
+
+    # Create category folders
+    cd .Python-Passwd-Data
+    sudo mkdir apps emails others social websites &>/dev/null
+
+
+    echo "========================================================"
+
+    echo " 
+                Installation Complete !
+    "

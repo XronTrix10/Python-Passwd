@@ -1,10 +1,6 @@
 # Python-Passwd
 
-## This Linux Branch is under development !
-[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://github.com/XronTrix10/Python-Passwd/tree/linux)
-
-## Checkout Windows
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=flate&logo=windows-11&logoColor=white)](https://github.com/XronTrix10/Python-Passwd/tree/windows)
+![Image](https://user-images.githubusercontent.com/98148986/219333077-3e88552e-87ee-4360-8874-d60aab16cd37.png)
 
 ### This is a simple CLI encryption based local password manager for those who don't want to rely upon third party online password managers
 
@@ -13,7 +9,7 @@
 ## Features
 
 - Has inbuilt strong password generator
-- The credentials are saved in a hidden directory in encrypted format (.pswd)
+- The credentials are saved in a hidden directory inside /opt folder in encrypted format (.pswd)
 - uses advanced & modified cipher text algorithm for encryption
 - Has Vault Lock Protection
 - User can save email, mobile, username, passwords and comments
@@ -25,30 +21,29 @@
 
 - System must have Python 3.x pre-installed
 
+## This is for Linux only
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://github.com/XronTrix10/Python-Passwd/tree/linux)
+
+## Checkout Windows
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=flate&logo=windows-11&logoColor=white)](https://github.com/XronTrix10/Python-Passwd/tree/windows)
 
 
-
-<!-- ## Installation
+## Installation for Linux
 
 1. [Download](https://codeload.github.com/XronTrix10/Python-Passwd/zip/refs/heads/windows) the Repo or,
 
        git clone https://github.com/XronTrix10/Python-Passwd
 
-2. Run the setup file as Administrator
-3. Add the Script location to PATH
+2. Run the setup file
 
-    1. Open Advanced system settings
-    2. Go to Environment Variables
-    3. edit PATH variable
-    4. Click New
-    5. Add "C:\Program Files\Python-Passwd" without quotes
+       cd Python-Passwd && chmod +x setup.sh && bash setup.sh       
+              
+3. Grant sudo permission when asked
 
-    <img src="https://user-images.githubusercontent.com/98148986/214379647-137e1473-8291-4818-8bba-fddbc1fd71dc.png" width="80%" height="30%">
-
-    6. Now Click OK
+    
 
 ## Usage
 
-- Open Terminal or CMD or PowerShell from anywhere, then
+- Open any Terminal from anywhere, then
         
-      pswd -->
+      pswd
