@@ -40,7 +40,11 @@
               
 3. Grant sudo permission when asked
 
-    
+### __NOTE :__ The setup script by default appends an alias to your .bashrc file. If you have zsh installed, then manually add the alias by running the command below
+
+    echo "alias pswd='python3 /srv/.Python-Passwd/main.py'" >> ~/.zshrc
+
+<br>  
 
 ## Usage
 
