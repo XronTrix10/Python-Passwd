@@ -2,24 +2,35 @@ import os
 from modules import art, fileSelector, fileEditor, pswdManager
 from os import path
 
+# Path to the credential files
 main_path = path.expandvars(r"%APPDATA%\Python-Passwd-Data")
+
+
+"""
+This function is used to manage files in a directory.
+The argument para is used to indicate the action that needs to be carried out on the file.
+"""
 
 
 def fileManage(para):
 
     art.header()
+    # select the directory based on the password category
     files_path = fileSelector.filePath_Selector(main_path)
 
+    # If the file path is equal to the default path, then the function will return.
     if files_path == main_path:
         return
 
     art.header()
 
     try:
+        # The os.listdir fuction is used to get a list of files in the directory.
         list = os.listdir(files_path)
 
-    # If the directory was not found
+    # If the directory was not found, a FileNotFoundError is raised and a message is printed with probable causes.
     except FileNotFoundError:
+
         print(
             art.clr.red,
             "\nDirectory for the saved passwords was NOT FOUND !!\n\nProbable Causes :",
@@ -34,7 +45,7 @@ def fileManage(para):
 
     else:
 
-        # Checking if the folder is empty
+        # Checks if the folder is empty. If it is empty, a message is printed and the user is prompted to go back.
         if len(list) == 0:
 
             print(art.clr.purple, "\nNo Files here :^)", art.clr.cyan)
@@ -51,8 +62,13 @@ def fileManage(para):
 
         else:
 
+            # Defines the ValueError_1 custom exception.
             class ValueError_1(Exception):
                 pass
+
+            # This part of the code will loop until a valid selection is made by the user.
+            # A menu is printed and the user is prompted with their choice.
+            # If the input is invalid, a ValueError_1 is raised.
 
             while True:
 
@@ -78,27 +94,36 @@ def fileManage(para):
                     print(art.clr.red, "Wrong CHOICE !!\n")
 
                 else:
-                    # if user wants to go back
+
+                    # If the user wishes to go back, the function will return.
                     if choice_1 == len(list) + 1:
 
                         art.header()
                         return
 
+                    # If the user makes a valid selection, the file path is built with os.path.join
+                    # and the appropriate function is called depending on the value of the para argument.
+
                     else:
 
+                        # join the path with user selected file name
                         filePath = os.path.join(files_path, list[choice_1 - 1])
 
                         if para == 1:
                             pswd_viewer(filePath)
                             return
+
                         elif para == 2:
-                            pswd_editor(filePath)
+                            art.header()
+                            fileEditor.file_editor(filePath)
                             return
+
                         elif para == 3:
                             file_deleter(filePath)
                             return
 
 
+# Define function to view passwords
 def pswd_viewer(filePath):
 
     art.header()
@@ -106,13 +131,16 @@ def pswd_viewer(filePath):
     # Checking for errors
     status = pswdManager.file_viewer(filePath)
 
+    # If no errors, prompt user to edit file
     if status != 1:
         print(art.clr.lightblue)
         choice_2 = input("\nDo you want to edit the file ? (Y/n): ").lower()
 
+        # Prompt user to edit the file
         if choice_2 == "y":
             art.header()
             fileEditor.file_editor(filePath)
+        # If user does not want to edit, return
         else:
             art.header()
             return
@@ -121,29 +149,35 @@ def pswd_viewer(filePath):
 # This function deletes the given file path permanently
 def file_deleter(filePath):
 
-    art.header()
+    art.header()  # function to display header
 
-    file_name = os.path.basename(filePath)
-    file_name = os.path.splitext(file_name)[0]
+    file_name = os.path.basename(filePath)  # get the file name from the file path
+    file_name = os.path.splitext(file_name)[0]  # split and extract file name without extension
 
     print(
-        art.clr.red,
+        art.clr.red,  # set colour to red
         f"\nPermanently delete {file_name} ?" + art.clr.bold,
-        " [ NOTE: This operation can't be undone ! ]",
+        " [ NOTE: This operation can't be undone ! ]",  # display warning
         art.clr.reset,
-        art.clr.lightblue,
+        art.clr.lightblue,  # set color to light blue
     )
 
-    choice_2 = input("\nYour decision: (Y/n): ").lower()
+    choice_2 = input(
+        "\nYour decision: (Y/n): "
+    ).lower()  # take input from user to decide if the file must be deleted
 
+    # if the user chooses to delete the file
     if choice_2 == "y":
 
         art.header()
-        print(art.clr.red, f"{file_name} was deleted forever !", art.clr.cyan)
-        os.remove(filePath)
-        input("\nPress ENTER to Continue...")
-        art.header()
+        print(
+            art.clr.red, f"{file_name} was deleted forever !", art.clr.cyan
+        )  # prints that the file has been deleted
+        os.remove(filePath)  # removes file
+        input("\nPress ENTER to Continue...")  # asks user to press enter to continue
+        art.header()  # displays header
 
+    # if user does not delete the file
     else:
         art.header()
         return

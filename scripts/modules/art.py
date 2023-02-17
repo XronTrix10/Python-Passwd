@@ -48,7 +48,7 @@ class clr:
     pink = '\033[95m'
     lightcyan = '\033[96m'
 
-
+# Function to clear screen and print logo 
 def header():
     os.system('cls')
     print(clr.yellow,logo,clr.reset)

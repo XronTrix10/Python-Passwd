@@ -93,9 +93,13 @@ set = [smlLtrs, numbers, symbols, capLtrs]
 
 
 def gen():
+      
+    """Generate a random password"""
 
     art.header()
     nr_letters = 0
+
+    # Check if password is 8 or more letters, if not ask for correct number of letters
     while nr_letters < 8:
         try:
             print(art.clr.lightblue)
@@ -109,10 +113,13 @@ def gen():
                 print(art.clr.red, "Length is too short !! Try at least 8\n")
 
     choice = "y"
-    while choice == "y":
 
+    # Continuously generate a new password until user inputs 'n'
+    while choice == "y":
+        # Generate a new password
         final = ""
-        for i in range(10):
+        # Generating more 10 times for looking cool perposes
+        for _ in range(10):
             final = Gen_paswd(nr_letters)
             time.sleep(0.1)
 
@@ -120,6 +127,8 @@ def gen():
         print(art.clr.green, "\nYou got: ", final, art.clr.lightblue)
 
         choice = input("\nRegenerate password ? (Y/n): ").lower()
+        
+        # Return Final Password 
         if choice != "y":
             return final
 
