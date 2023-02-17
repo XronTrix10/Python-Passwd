@@ -84,6 +84,9 @@ symbols = [
     ";",
     "'",
     '"',
+    "@",
+    "/",
+    "\\",
 ]
 
 set = [smlLtrs, numbers, symbols, capLtrs]
