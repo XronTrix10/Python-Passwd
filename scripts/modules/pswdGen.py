@@ -1,6 +1,6 @@
 # Password Generator
 
-import random
+import random, time
 from modules import art
 
 smlLtrs = [
@@ -112,8 +112,9 @@ def gen():
     while choice == "y":
 
         final = ""
-        for i in range(20):
+        for i in range(10):
             final = Gen_paswd(nr_letters)
+            time.sleep(0.1)
 
         art.header()
         print(art.clr.green, "\nYou got: ", final, art.clr.lightblue)
