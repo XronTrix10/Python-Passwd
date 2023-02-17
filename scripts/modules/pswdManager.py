@@ -1,7 +1,6 @@
 import os
 from modules import (
     art,
-    pswdGen,
     endeCRYPT,
     fileEditor,
     fileManager,
@@ -11,7 +10,6 @@ from modules import (
 from os import path
 
 main_path = path.expandvars(r"%APPDATA%\Python-Passwd-Data")
-
 
 class ValueError_1(Exception):
     pass
@@ -66,7 +64,7 @@ def pswd_saver():
             art.header()
             if choice == 1:
 
-                fileManager.fileManage(4)
+                fileManager.fileManage(2)
                 return
 
             elif choice == 2:

@@ -97,9 +97,6 @@ def fileManage(para):
                         elif para == 3:
                             file_deleter(filePath)
                             return
-                        elif para == 4:
-                            pswd_saver(filePath)
-                            return
 
 
 def pswd_viewer(filePath):
@@ -121,12 +118,7 @@ def pswd_viewer(filePath):
             return
 
 
-def pswd_editor(filePath):
-
-    art.header()
-    fileEditor.file_editor(filePath)
-
-
+# This function deletes the given file path permanently
 def file_deleter(filePath):
 
     art.header()
@@ -155,9 +147,3 @@ def file_deleter(filePath):
     else:
         art.header()
         return
-
-
-def pswd_saver(filePath):
-
-    art.header()
-    fileEditor.file_editor(filePath)
