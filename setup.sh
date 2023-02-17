@@ -8,6 +8,11 @@ PYTHON_FILE="$DEST_DIR/.Python-Passwd/main.py"
 # Create a permanent alias to run the python file
 echo "alias pswd='python3 $PYTHON_FILE'" >> ~/.bashrc
 
+if [ -f "${HOME}/.zshrc" ]; then
+    echo "alias pswd='python3 $PYTHON_FILE'" >> ~/.zshrc
+fi
+
+
 echo "
     
     
