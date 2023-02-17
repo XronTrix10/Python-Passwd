@@ -8,7 +8,7 @@ print(art.clr.cyan, f"What you upto {os.environ.get('USERNAME')} ?")
 # Handling Proper Choice
 while True:
 
-    # Handling ValueError ExceptioN
+    # Handling ValueError Exception
     while True:
 
         try:
