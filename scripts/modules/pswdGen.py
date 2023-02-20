@@ -82,8 +82,6 @@ symbols = [
     ",",
     ":",
     ";",
-    "'",
-    '"',
     "@",
     "/",
     "\\",
@@ -126,7 +124,12 @@ def gen():
             time.sleep(0.09)
 
         art.header()
-        print(art.clr.green, "\nYour Password: ", final, art.clr.lightblue)
+        print(
+            art.clr.lightblue,
+            "\nYour Password: " + art.clr.green,
+            final,
+            art.clr.lightblue,
+        )
         print(
             art.clr.red,
             f"\nTime to crack the password is approx {random.randint(2,4)} years and {random.randint(2,11)} months !",
