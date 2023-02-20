@@ -1,5 +1,5 @@
 import os
-from modules import art, pswdGen, endeCRYPT, pswdManager
+from modules import art, pswdGen, endeCRYPT, fileManager
 
 
 # This function is used to modify credentials (login and password) from a given file.
@@ -218,7 +218,7 @@ def add_account(filePath):
     print(art.clr.green, "Credentials were saved !", art.clr.reset)
 
     # Show the updated credentials
-    pswdManager.file_viewer(filePath)
+    fileManager.displayFile(filePath)
     
     print(art.clr.cyan)
     input("\nPress ENTER to Continue...")
