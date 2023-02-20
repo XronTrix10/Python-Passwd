@@ -128,7 +128,7 @@ def main_fun():
             )  # print a list of the available options with number assigned
             print(
                 art.clr.pink,
-                "\n\t(1) View saved passwords\n\t(2) Add a new credential\n\t(3) edit a File\n\t(4) Delete a File\n\t[5] Back",
+                "\n\t(1) View saved passwords\n\t(2) Add a new credential\n\t(3) Edit a File\n\t(4) Delete a File\n\t[5] Back",
                 art.clr.lightblue,
             )
 
