@@ -80,7 +80,7 @@ def file_editor(filePath):
                     art.clr.reset,
                     art.clr.red,
                     "\n\nNow, Carefully enter the line number (shown on left) that you want to edit"
-                    + "\n\nNOTE: That line MUST contain either login or password !!",
+                    + "\n\nNOTE: That line MUST contain login, password or comment !!",
                     art.clr.lightblue,
                 )
 
@@ -89,11 +89,19 @@ def file_editor(filePath):
                 # This statement checks if the user entered an invalid line number.
                 if line_no < 0 or line_no > len(data):
                     raise ValueError
+                
+                elif data[line_no] == '\n':
+                    raise ValueError_1
 
             except ValueError:
 
                 art.header()
-                print(art.clr.red, "Wrong INPUT !!\n")
+                print(art.clr.red, "Wrong INPUT !!\n", art.clr.reset)
+
+            except ValueError_1:
+
+                art.header()
+                print(art.clr.red, "EMPTY Line Can't be Modified !!\n", art.clr.reset)
 
             else:
 
