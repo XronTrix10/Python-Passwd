@@ -82,10 +82,9 @@ symbols = [
     ",",
     ":",
     ";",
-    "'",
-    '"',
-    '/',
-    '\\'
+    "@",
+    "/",
+    "\\",
 ]
 
 set = [smlLtrs, numbers, symbols, capLtrs]
@@ -93,8 +92,12 @@ set = [smlLtrs, numbers, symbols, capLtrs]
 
 def gen():
 
+    """Generate a random password"""
+
     art.header()
     nr_letters = 0
+
+    # Check if password is 8 or more letters, if not ask for correct number of letters
     while nr_letters < 8:
         try:
             print(art.clr.lightblue)
@@ -108,17 +111,29 @@ def gen():
                 print(art.clr.red, "Length is too short !! Try at least 8\n")
 
     choice = "y"
-    while choice == "y":
 
-        final = ""
-        for i in range(10):
-            final = Gen_paswd(nr_letters)
-            time.sleep(0.1)
+    # Continuously generate a new password until user inputs 'n'
+    while choice == "y":
+        # Generate a new password
+        final = Gen_paswd(nr_letters)
+        # Cool Loading bar
+        art.header()
+        print(art.clr.yellow, "\nGenerating strong password....\n", art.clr.green)
+        for i in range(20):
+            print("█" * (i + 1) + "▓" * (20 - i - 1) + f" {(i+1)*5}%", end="\r")
+            time.sleep(0.09)
 
         art.header()
-        print(art.clr.green, "\nYou got: ", final, art.clr.lightblue)
+        print(art.clr.green, "\nYour Password: ", final, art.clr.lightblue)
+        print(
+            art.clr.red,
+            f"\nTime to crack the password is approx {random.randint(2,4)} years and {random.randint(2,11)} months !",
+            art.clr.lightblue,
+        )
 
         choice = input("\nRegenerate password ? (Y/n): ").lower()
+
+        # Return Final Password
         if choice != "y":
             return final
 
@@ -145,7 +160,7 @@ def Gen_paswd(nr_letters):
     for each in passwd:
         final += each
 
-    art.header()
-    print(art.clr.orange, "Generating: " + art.clr.green, f"{final}")
+    # art.header()
+    # print(art.clr.orange, "Generating: " + art.clr.green, f"{final}")
 
     return final

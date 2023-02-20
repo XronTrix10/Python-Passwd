@@ -1,6 +1,6 @@
 # Python-Passwd
 
-![Image](https://user-images.githubusercontent.com/98148986/219333077-3e88552e-87ee-4360-8874-d60aab16cd37.png)
+![Image](https://user-images.githubusercontent.com/125879861/220150154-02b87290-83ac-49e2-80e0-902131098578.png)
 
 ### This is a simple CLI encryption based local password manager for those who don't want to rely upon third party online password managers
 

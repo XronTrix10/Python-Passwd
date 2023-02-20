@@ -19,16 +19,20 @@ while True:
             )
             choice_1 = int(input("\nEnter your choice: "))
         except ValueError:
+
+            # Show custom error message and start loop again if user enters invalid input
             art.header()
             print(art.clr.red, "Please enter Proper Choice !")
         else:
+            # If valid input, break out of loop
             break
 
     if choice_1 == 1:
-
+        # Generate password
         new_paswd = pswdGen.gen()
 
         art.header()
+        # Inform user of new password
         print(
             art.clr.cyan,
             "\nYour Password is: " + art.clr.green,
@@ -49,11 +53,13 @@ while True:
 
     elif choice_1 == 2:
 
+        # Enter password management
         art.header()
         pswdManager.Authentication()
 
     elif choice_1 == 3:
 
+        # Exit program
         os.system("clear")
         print(art.clr.orange, art.clr.bold, art.bye, art.clr.reset)
         break
@@ -61,6 +67,4 @@ while True:
     else:
 
         art.header()
-        print(
-            art.clr.red, f"WRONG choice {os.environ.get('USERNAME')} ! Try again !"
-        )
+        print(art.clr.red, f"WRONG choice {os.getlogin()} ! Try again !")

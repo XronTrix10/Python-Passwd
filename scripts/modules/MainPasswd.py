@@ -34,7 +34,7 @@ def authVault():
                 if password == str(f.readline()):
 
                     art.header()
-                    print(art.clr.green, "\nYou are Authenticated !", art.clr.reset)
+                    print(art.clr.green, "\nYou are Authenticated !", art.clr.reset, end='')
                     time.sleep(1.5)
                     art.header()
                     success = True
@@ -44,7 +44,7 @@ def authVault():
 
                     art.header()
                     print(art.clr.red, "\nWRONG key !")
-                    print(art.clr.bold,f"\n{3-i} Attempts remaining !",art.clr.reset)
+                    print(art.clr.bold,f"\n{3-i} Attempts remaining !",art.clr.reset, end='')
                     time.sleep(1)
 
         # encrypting the Vault password file

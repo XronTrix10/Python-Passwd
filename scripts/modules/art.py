@@ -1,14 +1,13 @@
 import os
 
-logo = '''
-
-    //   ) )
-   //___/ /  ___      ___      ___                   ___   /
-  / ____ / //   ) ) ((   ) ) ((   ) ) //  / /  / / //   ) /
- //       //   / /   \ \      \ \    //  / /  / / //   / /
-//       ((___( ( //   ) ) //   ) ) ((__( (__/ / ((___/ /
-
-'''
+logo = """
+__________   _____     _________  _________ __      __  ________   
+\______   \ /  _  \   /   _____/ /   _____//  \    /  \ \______ \  
+ |     ___//  /_\  \  \_____  \  \_____  \ \   \/\/   /  |    |  \ 
+ |    |   /    |    \ /        \ /        \ \        /   |    `   \\
+ |____|   \____|__  //_______  //_______  /  \__/\  /   /_______  /
+                  \/         \/         \/        \/            \/ 
+"""
 
 bye = '''
 
@@ -49,6 +48,10 @@ class clr:
     lightcyan = '\033[96m'
 
 
+# Function to clear screen and print logo
 def header():
-    os.system('clear')
-    print(clr.yellow,logo,clr.reset)
+    os.system("cls")
+    # print(clr.green,"\n" + "█"*70)
+    print(clr.green,clr.bold, logo,clr.reset, end='\n\n')
+    # print(clr.reset,clr.green,"\n" + "█"*70,clr.reset, end='\n\n\n')
+
