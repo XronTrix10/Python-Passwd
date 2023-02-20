@@ -3,7 +3,7 @@ from modules import art, pswdGen, pswdManager
 
 
 art.header()
-print(art.clr.cyan, f"\nWhat you upto {os.environ.get('USERNAME')} ?")
+print(art.clr.cyan, f"What you upto {os.environ.get('USERNAME')} ?")
 
 # Handling Proper Choice
 while True:
