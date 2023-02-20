@@ -8,11 +8,11 @@ main_path = path.expandvars(r"%APPDATA%\Python-Passwd-Data")
 
 """
 This function is used to manage files in a directory.
-The argument para is used to indicate the action that needs to be carried out on the file.
+The argument option is used to indicate the action that needs to be carried out on the file.
 """
 
 
-def fileManage(para):
+def fileManage(option):
 
     art.header()
     # select the directory based on the password category
@@ -58,7 +58,7 @@ def fileManage(para):
                 "OPTIONS:",
                 art.clr.reset,
             )
-            fileManage(para)
+            fileManage(option)
 
         else:
 
@@ -102,23 +102,23 @@ def fileManage(para):
                         return
 
                     # If the user makes a valid selection, the file path is built with os.path.join
-                    # and the appropriate function is called depending on the value of the para argument.
+                    # and the appropriate function is called depending on the value of the option argument.
 
                     else:
 
                         # join the path with user selected file name
                         filePath = os.path.join(files_path, list[choice_1 - 1])
 
-                        if para == 1:
+                        if option == 1:
                             pswd_viewer(filePath)
                             return
 
-                        elif para == 2:
+                        elif option == 2:
                             art.header()
                             fileEditor.file_editor(filePath)
                             return
 
-                        elif para == 3:
+                        elif option == 3:
                             file_deleter(filePath)
                             return
 
