@@ -1,20 +1,18 @@
 import os
-from modules import art, fileSelector, fileEditor, pswdManager, endeCRYPT
+from modules import art, fileSelector, fileEditor, pswdManager
 from os import path
 
 # Path to the credential files
 main_path = path.expandvars(r"%APPDATA%\Python-Passwd-Data")
 
 
-class ValueError_1(Exception):
-    pass
+"""
+This function is used to manage files in a directory.
+The argument para is used to indicate the action that needs to be carried out on the file.
+"""
 
 
-def fileManage(option):
-
-    """
-    This function is used to manage files in a directory.
-    The argument option is used to indicate the action that needs to be carried out on the file."""
+def fileManage(para):
 
     art.header()
     # select the directory based on the password category
@@ -60,7 +58,7 @@ def fileManage(option):
                 "OPTIONS:",
                 art.clr.reset,
             )
-            fileManage(option)
+            fileManage(para)
 
         else:
 
@@ -104,124 +102,34 @@ def fileManage(option):
                         return
 
                     # If the user makes a valid selection, the file path is built with os.path.join
-                    # and the appropriate function is called depending on the value of the option argument.
+                    # and the appropriate function is called depending on the value of the para argument.
 
                     else:
 
                         # join the path with user selected file name
                         filePath = os.path.join(files_path, list[choice_1 - 1])
 
-                        if option == 1:
-                            pswdViewer(filePath)
+                        if para == 1:
+                            pswd_viewer(filePath)
                             return
 
-                        elif option == 2:
+                        elif para == 2:
                             art.header()
                             fileEditor.file_editor(filePath)
                             return
 
-                        elif option == 3:
+                        elif para == 3:
                             file_deleter(filePath)
                             return
 
 
-# This function helps to add account to files
-def pswdAdder():
-
-    art.header()
-
-    while True:
-
-        # Present user with two options - select or create
-        try:
-            print(
-                art.clr.bold,
-                art.clr.orange,
-                "\nPlease SELECT a file or CREATE a new file: ",
-                art.clr.reset,
-            )
-            print(art.clr.pink, "\n\t(1) SELECT\n\t(2) CREATE", art.clr.lightblue)
-            choice = int(input("\nYour choice: "))
-
-            if choice < 0 or choice > 2:  # ensuring the inputs are within range
-                raise ValueError_1
-
-        except ValueError:  # Wrong input value
-            art.header()
-            print(art.clr.red, "Wrong INPUT !!\n")
-
-        except ValueError_1:  # If input out of range
-            art.header()
-            print(art.clr.red, "Wrong CHOICE !!\n")
-
-        else:
-
-            art.header()
-
-            if choice == 1:
-
-                fileManage(2)
-                return
-
-            elif choice == 2:
-
-                # Select file path
-                files_path = fileSelector.filePath_Selector(main_path)
-                # If user cancels, return
-                if files_path == main_path:
-                    return
-
-                art.header()
-
-                # List any already existing files in the given path
-                list = os.listdir(files_path)
-
-                if len(list) != 0:
-
-                    print(art.clr.blue, "\nAlready Present Files: \n")
-
-                    for i in range(len(list)):
-
-                        # Print only file names without extension
-                        print(art.clr.pink, f"\t({i+1})", list[i].split(".")[0])
-
-                # If no file is present
-                else:
-                    print(art.clr.green, "\nNo Files here, create one !")
-
-                # Get the File Name
-                print(
-                    "\nNow, give a name to your file. [ Example: Facebook, Instagram...etc ]\n"
-                    + art.clr.red,
-                    "\nNOTE: Don't use name of already present file !\n",
-                    art.clr.cyan,
-                )
-                header = input("Name: ")
-                file_name = header + ".pswd"  # Create file name
-                filePath = os.path.join(
-                    files_path, file_name
-                )  # Create full path to file
-
-                # creating the file
-                with open(filePath, "w") as file:
-                    file.write("\n\t\t[ " + header + " ]\n")
-
-                endeCRYPT.encode_file(filePath)  # Encrypt File
-
-                art.header()
-
-                # Redirecting to add account after creating the file
-                fileEditor.add_account(filePath)
-                break
-
-
 # Define function to view passwords
-def pswdViewer(filePath):
+def pswd_viewer(filePath):
 
     art.header()
 
     # Checking for errors
-    status = displayFile(filePath)
+    status = pswdManager.file_viewer(filePath)
 
     # If no errors, prompt user to edit file
     if status != 1:
@@ -238,38 +146,13 @@ def pswdViewer(filePath):
             return
 
 
-# This function is used to open a file and display its contents.
-def displayFile(filePath):
-
-    # If file is decrypted without error, then print the contents
-    status = endeCRYPT.decode_file(filePath)
-
-    if status != 1:
-
-        print(art.clr.blue, "\n" + "=" * 60)
-
-        with open(filePath, "r") as file:
-            for lines in file:
-                print(art.clr.green, lines, end="")
-
-        print(art.clr.blue, "\n\n" + "=" * 60)
-
-    else:
-        return 1
-
-    # Encrypt the file after viewing it to ensure security.
-    endeCRYPT.encode_file(filePath)
-
-
 # This function deletes the given file path permanently
 def file_deleter(filePath):
 
     art.header()  # function to display header
 
     file_name = os.path.basename(filePath)  # get the file name from the file path
-    file_name = os.path.splitext(file_name)[
-        0
-    ]  # split and extract file name without extension
+    file_name = os.path.splitext(file_name)[0]  # split and extract file name without extension
 
     print(
         art.clr.red,  # set colour to red
