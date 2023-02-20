@@ -16,30 +16,7 @@ class ValueError_1(Exception):
     pass
 
 
-# This function is used to open a file and display its contents.
-def file_viewer(filePath):
-
-    # If file is decrypted without error, then print the contents
-    status = endeCRYPT.decode_file(filePath)
-
-    if status != 1:
-
-        print(art.clr.blue, "\n" + "=" * 60)
-
-        with open(filePath, "r") as file:
-            for lines in file:
-                print(art.clr.green, lines, end="")
-
-        print(art.clr.blue, "\n\n" + "=" * 60)
-
-    else:
-        return 1
-
-    # Encrypt the file after viewing it to ensure security.
-    endeCRYPT.encode_file(filePath)
-
-
-def pswd_saver():
+def accountAdder():
 
     art.header()
 
@@ -186,7 +163,7 @@ def main_fun():
             elif choice == 2:  # adding a new credential
 
                 art.header()
-                pswd_saver()
+                accountAdder()
 
             elif choice == 3:  # editing a file
 

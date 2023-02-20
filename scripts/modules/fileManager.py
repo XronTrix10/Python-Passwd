@@ -1,18 +1,20 @@
 import os
-from modules import art, fileSelector, fileEditor, pswdManager
+from modules import art, fileSelector, fileEditor, pswdManager, endeCRYPT
 from os import path
 
 # Path to the credential files
 main_path = path.expandvars(r"%APPDATA%\Python-Passwd-Data")
 
 
-"""
-This function is used to manage files in a directory.
-The argument option is used to indicate the action that needs to be carried out on the file.
-"""
+class ValueError_1(Exception):
+    pass
 
 
 def fileManage(option):
+
+    """
+    This function is used to manage files in a directory.
+    The argument option is used to indicate the action that needs to be carried out on the file."""
 
     art.header()
     # select the directory based on the password category
@@ -129,7 +131,7 @@ def pswd_viewer(filePath):
     art.header()
 
     # Checking for errors
-    status = pswdManager.file_viewer(filePath)
+    status = displayFile(filePath)
 
     # If no errors, prompt user to edit file
     if status != 1:
@@ -145,6 +147,28 @@ def pswd_viewer(filePath):
             art.header()
             return
 
+# This function is used to open a file and display its contents.
+def displayFile(filePath):
+
+    # If file is decrypted without error, then print the contents
+    status = endeCRYPT.decode_file(filePath)
+
+    if status != 1:
+
+        print(art.clr.blue, "\n" + "=" * 60)
+
+        with open(filePath, "r") as file:
+            for lines in file:
+                print(art.clr.green, lines, end="")
+
+        print(art.clr.blue, "\n\n" + "=" * 60)
+
+    else:
+        return 1
+
+    # Encrypt the file after viewing it to ensure security.
+    endeCRYPT.encode_file(filePath)
+
 
 # This function deletes the given file path permanently
 def file_deleter(filePath):
@@ -152,7 +176,9 @@ def file_deleter(filePath):
     art.header()  # function to display header
 
     file_name = os.path.basename(filePath)  # get the file name from the file path
-    file_name = os.path.splitext(file_name)[0]  # split and extract file name without extension
+    file_name = os.path.splitext(file_name)[
+        0
+    ]  # split and extract file name without extension
 
     print(
         art.clr.red,  # set colour to red
