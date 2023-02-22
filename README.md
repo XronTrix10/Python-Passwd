@@ -51,3 +51,11 @@
 - Open any Terminal from anywhere, then type:
         
       pswd
+
+## Uninstall
+
+- Go inside the git repository directory, and then type:
+
+      sudo bash uninstall.sh
+
+**NOTE :** The uninstaller will only remove the python script files. The bash alias and all the credential files will remain unaffected !

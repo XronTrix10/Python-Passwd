@@ -1,6 +1,6 @@
 @echo off
 
-:: This script copies the programs to C:\Program Files directory, appends the location to PATH variable for current user and creates some hidden folders in APPDATA folder to save encrypted passwords
+:: This script removes all python scripts
 
 echo "
 
@@ -36,7 +36,7 @@ if [ $(id -u) != 0 ]; then
     
 else
 
-    rm -r /srv/.Python-Passwd/ &>/dev/null
+    rm -r /usr/share/Python-Passwd/ &>/dev/null
 
     echo "Uninstallation in progress...."
 
