@@ -147,9 +147,10 @@ def Gen_paswd(nr_letters):
     passwd += random.choice(smlLtrs)
     passwd += random.choice(capLtrs)
     passwd += random.choice(numbers)
-    passwd += random.choice(symbols)
+    for i in range(3):
+        passwd += random.choice(symbols)
 
-    for i in range(nr_letters - 4):
+    for i in range(nr_letters - 6):
         chosen_set = random.choice(set)
         key = random.choice(chosen_set)
         passwd += key
