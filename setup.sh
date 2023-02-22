@@ -2,8 +2,8 @@
 
 # Variables
 SOURCE_DIR="$(pwd)/scripts"
-DEST_DIR="/srv"
-PYTHON_FILE="$DEST_DIR/.Python-Passwd/main.py"
+DEST_DIR="/usr/share"
+PYTHON_FILE="$DEST_DIR/Python-Passwd/main.py"
 
 # Create a permanent alias to run the python file
 echo "alias pswd='python3 $PYTHON_FILE'" >> ~/.bashrc
@@ -54,8 +54,8 @@ fi
     sudo cp -r $SOURCE_DIR $DEST_DIR
 
     # Rename and hide the folder
-    cd /srv
-    sudo mv scripts .Python-Passwd &>/dev/null
+    cd /usr/share
+    sudo mv scripts Python-Passwd &>/dev/null
 
     # Create folder for credential Files
     cd /opt
