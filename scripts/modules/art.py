@@ -50,7 +50,7 @@ class clr:
 
 # Function to clear screen and print logo
 def header():
-    os.system("cls")
+    os.system("clear")
     # print(clr.green,"\n" + "█"*70)
     print(clr.green,clr.bold, logo,clr.reset, end='\n\n')
     # print(clr.reset,clr.green,"\n" + "█"*70,clr.reset, end='\n\n\n')
