@@ -54,15 +54,13 @@ fi
     sudo cp -r $SOURCE_DIR $DEST_DIR
 
     # Rename and hide the folder
-    cd /usr/share
-    sudo mv scripts Python-Passwd &>/dev/null
+    sudo mv $DEST_DIR/scripts $DEST_DIR/Python-Passwd &>/dev/null
 
     # Create folder for credential Files
-    cd /opt
-    sudo mkdir .Python-Passwd-Data &>/dev/null
+    sudo mkdir ~/.Python-Passwd-Data &>/dev/null
 
     # Create category folders
-    cd .Python-Passwd-Data
+    cd ~/.Python-Passwd-Data
     sudo mkdir apps emails others social websites &>/dev/null
 
 
