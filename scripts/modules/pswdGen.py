@@ -2,97 +2,18 @@
 
 import random, time
 from modules import art
+import string
 
-smlLtrs = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-]
-capLtrs = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-]
-numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-symbols = [
-    "!",
-    "#",
-    "$",
-    "%",
-    "&",
-    "(",
-    ")",
-    "*",
-    "+",
-    "-",
-    "_",
-    "=",
-    "`",
-    "~",
-    "<",
-    ">",
-    "?",
-    ".",
-    ",",
-    ":",
-    ";",
-    "@",
-    "/",
-    "\\",
-]
+
+smlLtrs = string.ascii_lowercase
+capLtrs = string.ascii_uppercase
+numbers = string.digits
+symbols = string.punctuation
 
 set = [smlLtrs, numbers, symbols, capLtrs]
 
 
 def gen():
-
-    """Generate a random password"""
 
     art.header()
     nr_letters = 0
@@ -145,8 +66,14 @@ def Gen_paswd(nr_letters):
     passwd += random.choice(smlLtrs)
     passwd += random.choice(capLtrs)
     passwd += random.choice(numbers)
-    for i in range(3):
-        passwd += random.choice(symbols)
+
+    symbol_counter = 0
+
+    while symbol_counter < 3:
+        temp = random.choice(symbols)
+        if temp not in passwd:
+            passwd.append(temp)
+            symbol_counter += 1
 
     for i in range(nr_letters - 6):
         chosen_set = random.choice(set)
@@ -161,7 +88,5 @@ def Gen_paswd(nr_letters):
     for each in passwd:
         final += each
 
-    # art.header()
-    # print(art.clr.orange, "Generating: " + art.clr.green, f"{final}")
 
     return final
